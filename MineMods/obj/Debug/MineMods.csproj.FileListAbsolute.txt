@@ -1,0 +1,10 @@
+C:\Users\user\source\repos\MineMods\MineMods\bin\Debug\MineMods.exe.config
+C:\Users\user\source\repos\MineMods\MineMods\bin\Debug\MineMods.exe
+C:\Users\user\source\repos\MineMods\MineMods\bin\Debug\MineMods.pdb
+C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.csprojAssemblyReference.cache
+C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.Form1.resources
+C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.Mods.resources
+C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.Properties.Resources.resources
+C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.csproj.GenerateResource.cache
+C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.exe
+C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.pdb
