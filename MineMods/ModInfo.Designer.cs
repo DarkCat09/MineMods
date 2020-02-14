@@ -30,26 +30,83 @@
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.скачатьМодToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.скачатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.скачатьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.скачатьВZipархивеzipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.скачатьВОбычномФорматеjarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(13, 13);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 24);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(400, 200);
+            this.pictureBox1.Size = new System.Drawing.Size(425, 202);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // textBox1
             // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.textBox1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(13, 220);
+            this.textBox1.Location = new System.Drawing.Point(0, 232);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(400, 218);
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(425, 218);
             this.textBox1.TabIndex = 1;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.скачатьМодToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(425, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // скачатьМодToolStripMenuItem
+            // 
+            this.скачатьМодToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.скачатьToolStripMenuItem,
+            this.скачатьКакToolStripMenuItem});
+            this.скачатьМодToolStripMenuItem.Name = "скачатьМодToolStripMenuItem";
+            this.скачатьМодToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.скачатьМодToolStripMenuItem.Text = "Скачать мод";
+            // 
+            // скачатьToolStripMenuItem
+            // 
+            this.скачатьToolStripMenuItem.Name = "скачатьToolStripMenuItem";
+            this.скачатьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.скачатьToolStripMenuItem.Text = "Скачать";
+            // 
+            // скачатьКакToolStripMenuItem
+            // 
+            this.скачатьКакToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.скачатьВZipархивеzipToolStripMenuItem,
+            this.скачатьВОбычномФорматеjarToolStripMenuItem});
+            this.скачатьКакToolStripMenuItem.Name = "скачатьКакToolStripMenuItem";
+            this.скачатьКакToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.скачатьКакToolStripMenuItem.Text = "Скачать как...";
+            // 
+            // скачатьВZipархивеzipToolStripMenuItem
+            // 
+            this.скачатьВZipархивеzipToolStripMenuItem.Name = "скачатьВZipархивеzipToolStripMenuItem";
+            this.скачатьВZipархивеzipToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
+            this.скачатьВZipархивеzipToolStripMenuItem.Text = "Скачать в zip-архиве (*.zip)";
+            // 
+            // скачатьВОбычномФорматеjarToolStripMenuItem
+            // 
+            this.скачатьВОбычномФорматеjarToolStripMenuItem.Name = "скачатьВОбычномФорматеjarToolStripMenuItem";
+            this.скачатьВОбычномФорматеjarToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
+            this.скачатьВОбычномФорматеjarToolStripMenuItem.Text = "Скачать в обычном формате (*.jar)";
             // 
             // ModInfo
             // 
@@ -58,9 +115,13 @@
             this.ClientSize = new System.Drawing.Size(425, 450);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "ModInfo";
             this.Text = "Мод";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -70,5 +131,11 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem скачатьМодToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem скачатьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem скачатьКакToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem скачатьВZipархивеzipToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem скачатьВОбычномФорматеjarToolStripMenuItem;
     }
 }

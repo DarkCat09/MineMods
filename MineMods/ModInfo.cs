@@ -12,11 +12,13 @@ namespace MineMods
         {
             InitializeComponent();
 
+            mod = mod.Replace("&&", "&");
+
             this.Text = "Мод " + mod;
 
             try
             {
-                modDescription = File.ReadAllLines(mod + "dscr.txt");
+                modDescription = File.ReadAllLines(mod.Replace(" ", "_").Replace("&", "and") + "-dscr.txt");
             }
             catch (PathTooLongException)
             {
@@ -44,12 +46,21 @@ namespace MineMods
                                     "Ошибка", MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (IOException)
             {
                 _ = MessageBox.Show("Не удалось прочитать файл описания!\n\n" +
                                     "Попробуйте перезапустить программу.\n" +
                                     "Если это не поможет, передайте разработчику код ошибки:\n" +
-                                    "MINEMODS_UNKNOWNEXCEPTION",
+                                    "MINEMODS_UNKNOWNIOEXCEPTION",
+                                    "Ошибка", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                _ = MessageBox.Show("Критическая ошибка!\n\n" +
+                                    "Попробуйте перезапустить программу.\n" +
+                                    "Если это не поможет, передайте разработчику код ошибки:\n" +
+                                    "MINEMODS_CRITUNKNOWNEXCEPTION",
                                     "Ошибка", MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
             }
@@ -57,6 +68,28 @@ namespace MineMods
             if (modDescription != null)
             {
                 textBox1.Lines = modDescription;
+
+                try
+                {
+                    pictureBox1.Load(mod.Replace(" ", "_").Replace("&", "and") + "-icon" + ".png");
+                }
+                catch (FileNotFoundException)
+                {
+                    try
+                    {
+                        pictureBox1.Load(mod.Replace(" ", "_").Replace("&", "and") + "-icon" + ".jpg");
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        _ = MessageBox.Show("Файл с картинкой не найден!\n\n" +
+                                            "Возможно, картинки для этого мода пока что нет.\n\n" +
+                                            "Если Вам нужна картинка, напишите разработчику письмо\n" +
+                                            "с темой кода проблемы:\n" +
+                                            "MINEMODS_PICTURENOTFOUND <название мода>",
+                                            "Ошибка", MessageBoxButtons.OK,
+                                            MessageBoxIcon.Warning);
+                    }
+                }
             }
         }
     }

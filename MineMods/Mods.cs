@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MineMods
@@ -9,6 +10,12 @@ namespace MineMods
         /// Last Mod
         /// </summary>
         int modnumber = 1;
+
+        public struct Mod
+        {
+            public string modName;
+            public string[] categories;
+        }
 
         public Mods(string category)
         {
@@ -74,7 +81,7 @@ namespace MineMods
             else if (category == "Графика")
             {
                 AddMod("OptiFine");
-                AddMod("Localized Weather and Stormfronts");
+                AddMod("Localized Weather && Stormfronts");
                 AddMod("Simple Colored Blocks");
             }
             else if (category == "Блоки" || category == "Другое" || category == "Блоки и другое")
@@ -95,6 +102,13 @@ namespace MineMods
             {
                 Close();
             }
+            /*StreamReader s = new StreamReader("mods.txt");
+            string line = "";
+
+            while ((line = s.ReadLine()) != null)
+            {
+                //code
+            }*/
             #endregion
         }
         private void OpenModDescription(object sender, EventArgs e)
@@ -104,7 +118,7 @@ namespace MineMods
             infoWindow.Show();
         }
 
-        void AddMod(string modName)
+        private void AddMod(string modName)
         {
             Label label1 = new Label();
             label1.AutoSize = true;

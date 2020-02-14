@@ -1,0 +1,50 @@
+MapWriter2;Клиент
+JourneyMap;Клиент
+Just Enough Items;Клиент
+Just Enough Resources;Клиент
+Faster Ladder Climbing;Клиент
+Back Tools;Клиент
+Neat;Клиент,Графика
+WorldEdit;Сервер,мир
+Pam's HarvestCraft;Еда
+Simply Tea!;Еда
+Peanuts!;Еда
+Simple Farming;Еда
+Maple syrup;Еда
+Culinary Construct;Еда
+Useful Food;Еда
+MrCrayfish's Furniture Mod;Мебель
+Macaw's Furniture;Мебель
+Macaw's Roofs;Мебель
+Simply Light;Мебель,Электроника
+Lightest Lamps;Мебель,Электроника
+Carpet Stairs;Мебель
+Chinese Workshop;Мебель
+Ultimate Car;Транспорт
+Generic American Motoring;Транспорт
+MrCrayfish's Vechicle Mod;Транспорт
+Saracalia's City;Транспорт
+Real Train Mod;Транспорт
+Paragliders;Транспорт
+OpenComputers;Электроника
+ComputerCraft;Электроника
+The Spotlight Mod;Электроника
+Vic's Modern Warfare;Оружие
+MrCrayfish's Gun Mod;Оружие
+Techguns;Оружие
+Torch Bow Mod;Оружие
+Super Hot;Оружие
+OptiFine;Графика
+Localized Weather & Stormfronts;Графика
+Simple Colored Blocks;Графика
+PrinterBlock Mod;Блоки
+MC Paint;Блоки
+Chisel;Блоки
+Aurum's More Blocks;Блоки
+Absent by Design;Блоки
+Asphalt Mod;Блоки
+Custom NPCs;Другое
+JJ Coin;Другое
+Money;Другое
+Smoke Signal;Другое
+ExtraButtons;Другое
