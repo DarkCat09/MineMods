@@ -37,7 +37,7 @@
             this.ClientSize = new System.Drawing.Size(773, 353);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "Mods";
-            this.Text = "Mods";
+            this.Text = "Моды";
             this.ResumeLayout(false);
 
         }

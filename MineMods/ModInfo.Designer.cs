@@ -36,6 +36,8 @@
             this.скачатьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.скачатьВZipархивеzipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.скачатьВОбычномФорматеjarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.открытьВБраузереcurseforgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.открытьВБраузереСтраницуЗагрузкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +78,9 @@
             // 
             this.скачатьМодToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.скачатьToolStripMenuItem,
-            this.скачатьКакToolStripMenuItem});
+            this.скачатьКакToolStripMenuItem,
+            this.открытьВБраузереcurseforgeToolStripMenuItem,
+            this.открытьВБраузереСтраницуЗагрузкиToolStripMenuItem});
             this.скачатьМодToolStripMenuItem.Name = "скачатьМодToolStripMenuItem";
             this.скачатьМодToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.скачатьМодToolStripMenuItem.Text = "Скачать мод";
@@ -84,7 +88,7 @@
             // скачатьToolStripMenuItem
             // 
             this.скачатьToolStripMenuItem.Name = "скачатьToolStripMenuItem";
-            this.скачатьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.скачатьToolStripMenuItem.Size = new System.Drawing.Size(287, 22);
             this.скачатьToolStripMenuItem.Text = "Скачать";
             // 
             // скачатьКакToolStripMenuItem
@@ -93,7 +97,7 @@
             this.скачатьВZipархивеzipToolStripMenuItem,
             this.скачатьВОбычномФорматеjarToolStripMenuItem});
             this.скачатьКакToolStripMenuItem.Name = "скачатьКакToolStripMenuItem";
-            this.скачатьКакToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.скачатьКакToolStripMenuItem.Size = new System.Drawing.Size(287, 22);
             this.скачатьКакToolStripMenuItem.Text = "Скачать как...";
             // 
             // скачатьВZipархивеzipToolStripMenuItem
@@ -107,6 +111,18 @@
             this.скачатьВОбычномФорматеjarToolStripMenuItem.Name = "скачатьВОбычномФорматеjarToolStripMenuItem";
             this.скачатьВОбычномФорматеjarToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
             this.скачатьВОбычномФорматеjarToolStripMenuItem.Text = "Скачать в обычном формате (*.jar)";
+            // 
+            // открытьВБраузереcurseforgeToolStripMenuItem
+            // 
+            this.открытьВБраузереcurseforgeToolStripMenuItem.Name = "открытьВБраузереcurseforgeToolStripMenuItem";
+            this.открытьВБраузереcurseforgeToolStripMenuItem.Size = new System.Drawing.Size(287, 22);
+            this.открытьВБраузереcurseforgeToolStripMenuItem.Text = "Открыть в браузере (curseforge)";
+            // 
+            // открытьВБраузереСтраницуЗагрузкиToolStripMenuItem
+            // 
+            this.открытьВБраузереСтраницуЗагрузкиToolStripMenuItem.Name = "открытьВБраузереСтраницуЗагрузкиToolStripMenuItem";
+            this.открытьВБраузереСтраницуЗагрузкиToolStripMenuItem.Size = new System.Drawing.Size(287, 22);
+            this.открытьВБраузереСтраницуЗагрузкиToolStripMenuItem.Text = "Открыть в браузере страницу загрузки";
             // 
             // ModInfo
             // 
@@ -137,5 +153,7 @@
         private System.Windows.Forms.ToolStripMenuItem скачатьКакToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem скачатьВZipархивеzipToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem скачатьВОбычномФорматеjarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem открытьВБраузереcurseforgeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem открытьВБраузереСтраницуЗагрузкиToolStripMenuItem;
     }
 }

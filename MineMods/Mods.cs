@@ -15,14 +15,20 @@ namespace MineMods
         {
             public string modName;
             public string[] categories;
+            public Uri dlLink;
+            public Label label1;
         }
+
+        Mod[] mods = new Mod[50];
 
         public Mods(string category)
         {
             InitializeComponent();
 
-            #region checking category
-            if (category == "Клиент")
+            this.Text = "Моды - " + category;
+
+            #region checking category ifs
+            /*if (category == "Клиент")
             {
                 AddMod("MapWriter2");
                 AddMod("JourneyMap");
@@ -101,21 +107,93 @@ namespace MineMods
             else
             {
                 Close();
-            }
-            /*StreamReader s = new StreamReader("mods.txt");
-            string line = "";
-
-            while ((line = s.ReadLine()) != null)
-            {
-                //code
             }*/
             #endregion
+
+            #region checking category fromfile
+            StreamReader s = new StreamReader("mods.txt");
+            string line = "";
+
+            line = s.ReadLine();
+            int n = 0;
+            int y = 0;
+            while (line != null)
+            {
+                mods[n].modName = line.Split(new char[] { ';' })[0];
+                mods[n].categories = (line.Split(new char[] { ';' })[1]).Split(new char[] { ',' });
+
+                if (line.Split(new char[] { ';' }).Length >= 3)
+                {
+                    mods[n].dlLink = new Uri(line.Split(new char[] { ';' })[3]);
+                }
+                else
+                {
+                    mods[n].dlLink = null;
+                }
+
+                for (int i = 0; i < ((line.Split(new char[] { ';' })[1]).Split(new char[] { ',' })).Length; i++)
+                {
+                    if (mods[n].categories[i] == category)
+                    {
+                        AddMod(mods[n], y);
+                        y++;
+                    }
+                }
+
+                if (n <= 50)
+                {
+                    n++;
+                }
+                else
+                {
+                    _ = MessageBox.Show("Массив модов переполнен!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    line = "";
+                    break;
+                }
+                line = s.ReadLine();
+            }
+            #endregion
         }
+
         private void OpenModDescription(object sender, EventArgs e)
         {
             Label lbl = (Label)sender;
             ModInfo infoWindow = new ModInfo(lbl.Text);
             infoWindow.Show();
+        }
+
+        private void OpenModDescription1(object sender, EventArgs e)
+        {
+            Label lbl = (Label)sender;
+            ModInfo infoWindow = new ModInfo(mods[Convert.ToInt32(lbl.AccessibleName)]);
+            infoWindow.Show();
+        }
+
+        private void AddMod(Mod mod)
+        {
+            Label label1 = new Label();
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(13, 30 * modnumber - 15);
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
+            label1.Text = mod.modName;
+            label1.Cursor = Cursors.Hand;
+            label1.Click += new EventHandler(OpenModDescription);
+            Controls.Add(label1);
+            modnumber++;
+        }
+
+        private void AddMod(Mod mod, int n)
+        {
+            Label label1 = new Label();
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(13, (30 * (n+1)) - 15);
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
+            label1.Text = mod.modName;
+            label1.Cursor = Cursors.Hand;
+            label1.AccessibleName = n.ToString();
+            label1.Click += new EventHandler(OpenModDescription1);
+            mod.label1 = label1;
+            Controls.Add(label1);
         }
 
         private void AddMod(string modName)
