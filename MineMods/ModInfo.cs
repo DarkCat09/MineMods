@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Windows.Forms;
 
 namespace MineMods
@@ -195,7 +196,23 @@ namespace MineMods
 
         private void DownloadMod(object sender, EventArgs e)
         {
-            //code
+            WebClient c = new WebClient();
+            string file = "";
+
+            if (!File.Exists(file))
+            {
+                File.Create(file);
+            }
+
+            try
+            {
+                c.DownloadFile(receivedMod.dlLink, file);
+            }
+            catch (WebException)
+            {
+                _ = MessageBox.Show("Ошибка");
+                Close();
+            }
         }
     }
 }

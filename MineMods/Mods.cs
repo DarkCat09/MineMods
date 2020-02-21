@@ -19,7 +19,7 @@ namespace MineMods
             public Label label1;
         }
 
-        Mod[] mods = new Mod[50];
+        Mod[] mods = new Mod[500];
 
         public Mods(string category)
         {
@@ -119,8 +119,11 @@ namespace MineMods
             int y = 0;
             while (line != null)
             {
-                mods[n].modName = line.Split(new char[] { ';' })[0];
-                mods[n].categories = (line.Split(new char[] { ';' })[1]).Split(new char[] { ',' });
+                if (line.Split(new char[] { ';' }).Length >= 1)
+                {
+                    mods[n].modName = line.Split(new char[] { ';' })[0];
+                    mods[n].categories = (line.Split(new char[] { ';' })[1]).Split(new char[] { ',' });
+                }
 
                 if (line.Split(new char[] { ';' }).Length >= 3)
                 {
@@ -131,22 +134,98 @@ namespace MineMods
                     mods[n].dlLink = null;
                 }
 
-                for (int i = 0; i < ((line.Split(new char[] { ';' })[1]).Split(new char[] { ',' })).Length; i++)
+                if (category != "Все моды")
                 {
-                    if (mods[n].categories[i] == category)
+                    if (category == "Сервер,мир")
                     {
-                        AddMod(mods[n], y);
-                        y++;
+                        for (int i = 0; i < ((line.Split(new char[] { ';' })[1]).Split(new char[] { ',' })).Length; i++)
+                        {
+                            if (mods[n].categories[i] == "Сервер" || mods[n].categories[i] == "Мир")
+                            {
+                                AddMod(mods[n], n, y);
+                                y++;
+                            }
+                        }
+                    }
+                    else if (category == "Электроника" || category == "Оружие" || category == "Электроника и оружие")
+                    {
+                        for (int i = 0; i < ((line.Split(new char[] { ';' })[1]).Split(new char[] { ',' })).Length; i++)
+                        {
+                            if (mods[n].categories[i] == "Электроника" || mods[n].categories[i] == "Оружие")
+                            {
+                                AddMod(mods[n], n, y);
+                                y++;
+                            }
+                        }
+                    }
+                    else if (category == "Блоки" || category == "Другое" || category == "Блоки и другое")
+                    {
+                        if (category == "Блоки и другое")
+                        {
+                            for (int i = 0; i < ((line.Split(new char[] { ';' })[1]).Split(new char[] { ',' })).Length; i++)
+                            {
+                                if (mods[n].categories[i] == "Блоки" ||
+                                    mods[n].categories[i] == "Другое" ||
+                                    mods[n].categories[i] == "Инструменты")
+                                {
+                                    AddMod(mods[n], n, y);
+                                    y++;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < ((line.Split(new char[] { ';' })[1]).Split(new char[] { ',' })).Length; i++)
+                            {
+                                if (mods[n].categories[i] == "Блоки" || mods[n].categories[i] == "Другое")
+                                {
+                                    AddMod(mods[n], n, y);
+                                    y++;
+                                }
+                            }
+                        }
+                    }
+                    else if (category == "Инструменты")
+                    {
+                        for (int i = 0; i < ((line.Split(new char[] { ';' })[1]).Split(new char[] { ',' })).Length; i++)
+                        {
+                            if (mods[n].categories[i] == "Инструменты")
+                            {
+                                AddMod(mods[n], n, y);
+                                y++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < ((line.Split(new char[] { ';' })[1]).Split(new char[] { ',' })).Length; i++)
+                        {
+                            if (mods[n].categories[i] == category)
+                            {
+                                AddMod(mods[n], n, y);
+                                y++;
+                            }
+                        }
                     }
                 }
+                else
+                {
+                    AddMod(mods[n], n, y);
+                    y++;
+                }
 
-                if (n <= 50)
+                if (n <= mods.Length)
                 {
                     n++;
                 }
                 else
                 {
-                    _ = MessageBox.Show("Массив модов переполнен!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _ = MessageBox.Show("Массив модов переполнен!\n\n" + 
+                                        "Передайте разработчику код ошибки:\n" + 
+                                        "MINEMODS_TOOMANYMODS",
+                                        "Ошибка",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
                     line = "";
                     break;
                 }
@@ -182,7 +261,7 @@ namespace MineMods
             modnumber++;
         }
 
-        private void AddMod(Mod mod, int n)
+        private void AddMod(Mod mod, int k, int n)
         {
             Label label1 = new Label();
             label1.AutoSize = true;
@@ -190,7 +269,7 @@ namespace MineMods
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
             label1.Text = mod.modName;
             label1.Cursor = Cursors.Hand;
-            label1.AccessibleName = n.ToString();
+            label1.AccessibleName = k.ToString();
             label1.Click += new EventHandler(OpenModDescription1);
             mod.label1 = label1;
             Controls.Add(label1);

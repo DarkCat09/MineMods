@@ -5,7 +5,7 @@ Just Enough Resources;Клиент
 Faster Ladder Climbing;Клиент
 Back Tools;Клиент
 Neat;Клиент,Графика
-WorldEdit;Сервер,мир
+WorldEdit;Сервер
 Pam's HarvestCraft;Еда
 Simply Tea!;Еда
 Peanuts!;Еда
@@ -13,9 +13,11 @@ Simple Farming;Еда
 Maple syrup;Еда
 Culinary Construct;Еда
 Useful Food;Еда
-MrCrayfish's Furniture Mod;Мебель
+MrCrayfish's Furniture Mod;Мебель,Электроника
 Macaw's Furniture;Мебель
+Macaw's Windows;Мебель
 Macaw's Roofs;Мебель
+Advanced Chimneys;Мебель,Блоки
 Simply Light;Мебель,Электроника
 Lightest Lamps;Мебель,Электроника
 Carpet Stairs;Мебель
@@ -26,6 +28,7 @@ MrCrayfish's Vechicle Mod;Транспорт
 Saracalia's City;Транспорт
 Real Train Mod;Транспорт
 Paragliders;Транспорт
+Redstone Control;Электроника
 OpenComputers;Электроника
 ComputerCraft;Электроника
 The Spotlight Mod;Электроника
@@ -34,8 +37,9 @@ MrCrayfish's Gun Mod;Оружие
 Techguns;Оружие
 Torch Bow Mod;Оружие
 Super Hot;Оружие
+Avaritia Mod;Оружие,Блоки
 OptiFine;Графика
-Localized Weather & Stormfronts;Графика
+Localized Weather && Stormfronts;Графика
 Simple Colored Blocks;Графика
 PrinterBlock Mod;Блоки
 MC Paint;Блоки
@@ -43,8 +47,14 @@ Chisel;Блоки
 Aurum's More Blocks;Блоки
 Absent by Design;Блоки
 Asphalt Mod;Блоки
+ExtraButtons;Блоки
 Custom NPCs;Другое
 JJ Coin;Другое
 Money;Другое
 Smoke Signal;Другое
-ExtraButtons;Другое
+Futurepack;Другое,Мир
+Advanced Finders;Инструменты,Другое
+Inventory Profiles;Инструменты
+(Survival) Island Generator;Инструменты,Мир,Другое
+JoinLastWorld;Инструменты
+Backups;Инструменты
