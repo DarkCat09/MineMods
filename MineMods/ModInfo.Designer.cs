@@ -117,6 +117,7 @@
             this.открытьВБраузереcurseforgeToolStripMenuItem.Name = "открытьВБраузереcurseforgeToolStripMenuItem";
             this.открытьВБраузереcurseforgeToolStripMenuItem.Size = new System.Drawing.Size(287, 22);
             this.открытьВБраузереcurseforgeToolStripMenuItem.Text = "Открыть в браузере (curseforge)";
+            this.открытьВБраузереcurseforgeToolStripMenuItem.Click += new System.EventHandler(this.открытьВБраузереcurseforgeToolStripMenuItem_Click);
             // 
             // открытьВБраузереСтраницуЗагрузкиToolStripMenuItem
             // 

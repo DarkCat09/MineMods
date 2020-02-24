@@ -1,6 +1,6 @@
 MapWriter2;Клиент
-JourneyMap;Клиент
-Just Enough Items;Клиент
+JourneyMap;Клиент;https://www.curseforge.com/minecraft/mc-mods/journeymap/download/2880387/file
+Just Enough Items (JEI);Клиент,Мир;https://www.curseforge.com/minecraft/mc-mods/jei/download/2803400/file
 Just Enough Resources;Клиент
 Faster Ladder Climbing;Клиент
 Back Tools;Клиент
@@ -43,7 +43,7 @@ Localized Weather && Stormfronts;Графика
 Simple Colored Blocks;Графика
 PrinterBlock Mod;Блоки
 MC Paint;Блоки
-Chisel;Блоки
+Chisel;Блоки;https://www.curseforge.com/minecraft/mc-mods/chisel/download/2813538/file
 Aurum's More Blocks;Блоки
 Absent by Design;Блоки
 Asphalt Mod;Блоки

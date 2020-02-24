@@ -1,0 +1,38 @@
+This mod was originally created by AUTOMATIC_MAIDEN, ported to 1.7.2 by asie, then maintained by Pokefenn and Cricket.
+It is currently maintained by tterrag, Drullkus, and minecreatr.
+
+It is a fork of the "Chisel 2" project, and is fully compatible with worlds that were created using that mod (1.7 only).
+
+NOTICE: Chisel now requires a library mod, CTM. Please install this before updating to 0.0.11+.
+
+What does this mod do?
+Chisel adds a huge variety of decorative blocks to the game.
+The mod is very useful for people who like the construction aspect of Minecraft.
+Access to new blocks is provided mostly through one tool, the chisel.
+The iron chisel is created with a iron ingot and a stick in a diagonal pattern.
+Right clicking opens the chiseling interface.
+Place a block in the chiseling slot (top left)  and you may turn it in the same group.
+Chisel also adds another tool called the Ender Offset Wand.
+Some blocks such as the Factory Block's Massive Fan has a texture that spans over multiple blocks.
+The Ender Offset Wand can be used to shift a texture up or down and left or right.
+There is a more sophisticated version of the Chisel tool, named the iChisel. It is spring-loaded with many helpful features. Experiment around with it! :)
+
+Other Information
+Legacy Downloads and other information is available on https://minecraft.curseforge.com/projects/chisel-venerable
+Please report bugs on the issue tracker!
+Chisel is licensed under GPL2.
+Chisel is free to use in any modpacks, without permission.
+The source code is available here: https://github.com/Chisel-Team/Chisel
+You can find the latest experimental releases on tterrag's Jenkins.
+Want to talk to us, join us on irc.esper.net #ChiselTeam
+
+Spotlights
+iskall85
+http://youtu.be/SCuBQs3NThw
+
+Credits
+A lot of textures are from the Painterly pack: http://painterlypack.net/
+AUTOMATIC_MAIDEN: The original author, Pokefenn the maintainer for 1.7.10
+Asie: Porting the mod to 1.7.2
+Cricket: Maintaining mod for 1.7.10.
+All the people who helped with code, or donated textures

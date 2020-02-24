@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace MineMods
@@ -22,7 +23,9 @@ namespace MineMods
             #region description file
             try
             {
-                modDescription = File.ReadAllLines(modName.Replace(" ", "_").Replace("&", "and") + "-dscr.txt");
+                string str = modName.Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "") +
+                            "-dscr.txt";
+                modDescription = File.ReadAllLines(str);
             }
             catch (PathTooLongException)
             {
@@ -74,16 +77,17 @@ namespace MineMods
             if (modDescription != null)
             {
                 textBox1.Lines = modDescription;
+                string str = modName.Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "") + "-icon";
 
                 try
                 {
-                    pictureBox1.Load(modName.Replace(" ", "_").Replace("&", "and") + "-icon" + ".png");
+                    pictureBox1.Load(str + ".png");
                 }
                 catch (FileNotFoundException)
                 {
                     try
                     {
-                        pictureBox1.Load(modName.Replace(" ", "_").Replace("&", "and") + "-icon" + ".jpg");
+                        pictureBox1.Load(str + ".jpg");
                     }
                     catch (FileNotFoundException)
                     {
@@ -102,6 +106,8 @@ namespace MineMods
             if (mod.dlLink != null)
             {
                 скачатьToolStripMenuItem.Click += new EventHandler(DownloadMod);
+                скачатьВОбычномФорматеjarToolStripMenuItem.Click += new EventHandler(DownloadMod);
+                скачатьВZipархивеzipToolStripMenuItem.Click += new EventHandler(DownloadModInZip);
             }
         }
 
@@ -109,99 +115,49 @@ namespace MineMods
         {
             InitializeComponent();
 
-            mod = mod.Replace("&&", "&");
-
-            this.Text = "Мод " + mod;
-
-            #region description file
-            try
+            ModInfo mf = new ModInfo(new Mods.Mod()
             {
-                modDescription = File.ReadAllLines(mod.Replace(" ", "_").Replace("&", "and") + "-dscr.txt");
-            }
-            catch (PathTooLongException)
-            {
-                _ = MessageBox.Show("Слишком длинный путь до файла описания!\n" +
-                                    "Запустите программу в каталоге выше.",
-                                    "Ошибка", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error);
-                Close();
-            }
-            catch (FileNotFoundException)
-            {
-                _ = MessageBox.Show("Не найден файл описания!\n\n" +
-                                    "Попробуйте перезапустить программу.\n" +
-                                    "Если это не поможет, передайте разработчику код ошибки:\n" +
-                                    "MINEMODS_FILENOTFOUNDEXCEPTION",
-                                    "Ошибка", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error);
-            }
-            catch (System.Security.SecurityException)
-            {
-                _ = MessageBox.Show("Ошибка безопасности!\n\n" +
-                                    "Попробуйте перезапустить программу.\n" +
-                                    "Если это не поможет, передайте разработчику код ошибки:\n" +
-                                    "MINEMODS_SECURITYEXCEPTION",
-                                    "Ошибка", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error);
-            }
-            catch (IOException)
-            {
-                _ = MessageBox.Show("Не удалось прочитать файл описания!\n\n" +
-                                    "Попробуйте перезапустить программу.\n" +
-                                    "Если это не поможет, передайте разработчику код ошибки:\n" +
-                                    "MINEMODS_UNKNOWNIOEXCEPTION",
-                                    "Ошибка", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error);
-            }
-            catch (Exception)
-            {
-                _ = MessageBox.Show("Критическая ошибка!\n\n" +
-                                    "Попробуйте перезапустить программу.\n" +
-                                    "Если это не поможет, передайте разработчику код ошибки:\n" +
-                                    "MINEMODS_CRITUNKNOWNEXCEPTION",
-                                    "Ошибка", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error);
-            }
-            #endregion
-
-            #region picture
-            if (modDescription != null)
-            {
-                textBox1.Lines = modDescription;
-
-                try
-                {
-                    pictureBox1.Load(mod.Replace(" ", "_").Replace("&", "and") + "-icon" + ".png");
-                }
-                catch (FileNotFoundException)
-                {
-                    try
-                    {
-                        pictureBox1.Load(mod.Replace(" ", "_").Replace("&", "and") + "-icon" + ".jpg");
-                    }
-                    catch (FileNotFoundException)
-                    {
-                        _ = MessageBox.Show("Файл с картинкой не найден!\n\n" +
-                                            "Возможно, картинки для этого мода пока что нет.\n\n" +
-                                            "Если Вам нужна картинка, напишите разработчику письмо\n" +
-                                            "с темой кода проблемы:\n" +
-                                            "MINEMODS_PICTURENOTFOUND <название мода>",
-                                            "Ошибка", MessageBoxButtons.OK,
-                                            MessageBoxIcon.Warning);
-                    }
-                }
-            }
-            #endregion
+                modName = mod,
+                categories = new string[1] { "" },
+                dlLink = null
+            });
         }
 
         private void DownloadMod(object sender, EventArgs e)
         {
             WebClient c = new WebClient();
-            string file = "";
+            string file = receivedMod.modName + ".jar";
+
+            //c.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
 
             if (!File.Exists(file))
             {
-                File.Create(file);
+                FileStream f = File.Create(file);
+                f.Close();
+            }
+
+            try
+            {
+                c.DownloadFile(receivedMod.dlLink, file);
+            }
+            catch (WebException ex)
+            {
+                _ = MessageBox.Show("Ошибка" + ex.Message);
+                Close();
+            }
+        }
+
+        private void DownloadModInZip(object sender, EventArgs e)
+        {
+            WebClient c = new WebClient();
+            string file = receivedMod.modName + ".zip";
+
+            //c.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+
+            if (!File.Exists(file))
+            {
+                FileStream f = File.Create(file);
+                f.Close();
             }
 
             try
@@ -213,6 +169,11 @@ namespace MineMods
                 _ = MessageBox.Show("Ошибка");
                 Close();
             }
+        }
+
+        private void открытьВБраузереcurseforgeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(receivedMod.dlLink.ToString());
         }
     }
 }

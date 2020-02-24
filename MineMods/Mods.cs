@@ -127,7 +127,7 @@ namespace MineMods
 
                 if (line.Split(new char[] { ';' }).Length >= 3)
                 {
-                    mods[n].dlLink = new Uri(line.Split(new char[] { ';' })[3]);
+                    mods[n].dlLink = new Uri(line.Split(new char[] { ';' })[2]);
                 }
                 else
                 {
