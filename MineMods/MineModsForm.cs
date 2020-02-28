@@ -73,5 +73,20 @@ namespace MineMods
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
         }
+
+        private void скачатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = MessageBox.Show("Чтобы скачать мод для последней версии Minecraft,\n" + 
+                                "откройте его детальную страницу, в меню выберите \"Скачать мод\"\n" + 
+                                "и нажмите \"Скачать\" или \"Открыть в браузере\".",
+                                "Информация", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+        }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutProgram about = new AboutProgram();
+            about.Show();
+        }
     }
 }

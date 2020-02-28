@@ -27,89 +27,6 @@ namespace MineMods
 
             this.Text = "Моды - " + category;
 
-            #region checking category ifs
-            /*if (category == "Клиент")
-            {
-                AddMod("MapWriter2");
-                AddMod("JourneyMap");
-                AddMod("Just Enough Items");
-                AddMod("Just Enough Resources");
-                AddMod("Faster Ladder Climbing");
-                AddMod("Back Tools");
-                AddMod("Neat");
-            }
-            else if (category == "Сервер,мир")
-            {
-                AddMod("WorldEdit");
-            }
-            else if (category == "Еда")
-            {
-                AddMod("Pam's HarvestCraft");
-                AddMod("Simply Tea!");
-                AddMod("Peanuts!");
-                AddMod("Simple Farming");
-                AddMod("Maple syrup");
-                AddMod("Culinary Construct");
-                AddMod("Useful Food");
-            }
-            else if (category == "Мебель")
-            {
-                AddMod("MrCrayfish's Furniture Mod");
-                AddMod("Macaw's Furniture");
-                AddMod("Macaw's Roofs");
-                AddMod("Simply Light");
-                AddMod("Lightest Lamps");
-                AddMod("Carpet Stairs");
-                AddMod("Chinese Workshop");
-            }
-            else if (category == "Транспорт")
-            {
-                AddMod("Ultimate Car");
-                AddMod("Generic American Motoring");
-                AddMod("MrCrayfish's Vechicle Mod");
-                AddMod("Saracalia's City");
-                AddMod("Real Train Mod");
-                AddMod("Paragliders");
-            }
-            else if (category == "Электроника" || category == "Оружие" || category == "Электроника и оружие")
-            {
-                AddMod("OpenComputers");
-                AddMod("ComputerCraft");
-                AddMod("The Spotlight Mod");
-                AddMod("Simply Light");
-                AddMod("Lightest Lamps");
-                AddMod("Vic's Modern Warfare");
-                AddMod("MrCrayfish's Gun Mod");
-                AddMod("Techguns");
-                AddMod("Torch Bow Mod");
-                AddMod("Super Hot");
-            }
-            else if (category == "Графика")
-            {
-                AddMod("OptiFine");
-                AddMod("Localized Weather && Stormfronts");
-                AddMod("Simple Colored Blocks");
-            }
-            else if (category == "Блоки" || category == "Другое" || category == "Блоки и другое")
-            {
-                AddMod("PrinterBlock Mod");
-                AddMod("MC Paint");
-                AddMod("Chisel");
-                AddMod("Aurum's More Blocks");
-                AddMod("Absent by Design");
-                AddMod("Asphalt Mod");
-                AddMod("Custom NPCs");
-                AddMod("JJ Coin");
-                AddMod("Money");
-                AddMod("Smoke Signal");
-                AddMod("ExtraButtons");
-            }
-            else
-            {
-                Close();
-            }*/
-            #endregion
-
             #region checking category fromfile
             StreamReader s = new StreamReader("mods.txt");
             string line = "";
@@ -142,7 +59,7 @@ namespace MineMods
                         {
                             if (mods[n].categories[i] == "Сервер" || mods[n].categories[i] == "Мир")
                             {
-                                AddMod(mods[n], n, y);
+                                mods[n] = AddMod(mods[n], n, y);
                                 y++;
                             }
                         }
@@ -153,7 +70,7 @@ namespace MineMods
                         {
                             if (mods[n].categories[i] == "Электроника" || mods[n].categories[i] == "Оружие")
                             {
-                                AddMod(mods[n], n, y);
+                                mods[n] = AddMod(mods[n], n, y);
                                 y++;
                             }
                         }
@@ -168,7 +85,7 @@ namespace MineMods
                                     mods[n].categories[i] == "Другое" ||
                                     mods[n].categories[i] == "Инструменты")
                                 {
-                                    AddMod(mods[n], n, y);
+                                    mods[n] = AddMod(mods[n], n, y);
                                     y++;
                                 }
                             }
@@ -179,7 +96,7 @@ namespace MineMods
                             {
                                 if (mods[n].categories[i] == "Блоки" || mods[n].categories[i] == "Другое")
                                 {
-                                    AddMod(mods[n], n, y);
+                                    mods[n] = AddMod(mods[n], n, y);
                                     y++;
                                 }
                             }
@@ -191,7 +108,7 @@ namespace MineMods
                         {
                             if (mods[n].categories[i] == "Инструменты")
                             {
-                                AddMod(mods[n], n, y);
+                                mods[n] = AddMod(mods[n], n, y);
                                 y++;
                             }
                         }
@@ -252,7 +169,7 @@ namespace MineMods
         {
             Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(13, 30 * modnumber - 15);
+            label1.Location = new System.Drawing.Point(13, 35 * modnumber - 15);
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
             label1.Text = mod.modName;
             label1.Cursor = Cursors.Hand;
@@ -261,11 +178,11 @@ namespace MineMods
             modnumber++;
         }
 
-        private void AddMod(Mod mod, int k, int n)
+        private Mod AddMod(Mod mod, int k, int n)
         {
             Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(13, (30 * (n+1)) - 15);
+            label1.Location = new System.Drawing.Point(13, (35 * (n+1)) - 15);
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
             label1.Text = mod.modName;
             label1.Cursor = Cursors.Hand;
@@ -273,19 +190,43 @@ namespace MineMods
             label1.Click += new EventHandler(OpenModDescription1);
             mod.label1 = label1;
             Controls.Add(label1);
+            return mod;
         }
 
         private void AddMod(string modName)
         {
             Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(13, 30 * modnumber - 15);
+            label1.Location = new System.Drawing.Point(13, 35 * modnumber - 15);
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
             label1.Text = modName;
             label1.Cursor = Cursors.Hand;
             label1.Click += new EventHandler(OpenModDescription);
             Controls.Add(label1);
             modnumber++;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text != "Поиск")
+            {
+                for (int i = 0; i < 500; i++)
+                {
+                    if (mods[i].label1 == null)
+                    {
+                        continue;
+                    }
+
+                    mods[i].label1.Visible = true;
+                    mods[i].label1.Enabled = true;
+
+                    if (!(mods[i].modName.ToLower().Contains(textBox1.Text.ToLower())))
+                    {
+                        mods[i].label1.Visible = false;
+                        mods[i].label1.Enabled = false;
+                    }
+                }
+            }
         }
     }
 }
