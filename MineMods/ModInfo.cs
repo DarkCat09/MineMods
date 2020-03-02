@@ -193,7 +193,6 @@ namespace MineMods
             string pictExt = ".png";
 
             Directory.CreateDirectory(modname);
-            folderBrowserDialog1.RootFolder = Environment.SpecialFolder.CommonApplicationData;
             string res = folderBrowserDialog1.ShowDialog().ToString();
 
             if (!File.Exists(modname + "-icon" + pictExt))
@@ -214,6 +213,10 @@ namespace MineMods
             if (res != "Cancel")
             {
                 File.WriteAllLines(folderBrowserDialog1.SelectedPath + "\\" + modname + "-dscr.txt", textBox1.Lines);
+                if (pictExt != "err")
+                {
+                    File.Copy(modname + "-icon" + pictExt, folderBrowserDialog1.SelectedPath + "\\" + modname + "-icon" + pictExt);
+                }
             }
         }
     }

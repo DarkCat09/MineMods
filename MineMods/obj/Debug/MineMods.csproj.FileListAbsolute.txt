@@ -10,3 +10,4 @@ C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.exe
 C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.pdb
 C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.MineModsForm.resources
 C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.AboutProgram.resources
+C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.BugReport.resources

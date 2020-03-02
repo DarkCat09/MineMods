@@ -52,6 +52,12 @@
     <Compile Include="AboutProgram.Designer.cs">
       <DependentUpon>AboutProgram.cs</DependentUpon>
     </Compile>
+    <Compile Include="BugReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BugReport.Designer.cs">
+      <DependentUpon>BugReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="MineModsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutProgram.resx">
       <DependentUpon>AboutProgram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BugReport.resx">
+      <DependentUpon>BugReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MineModsForm.resx">
       <DependentUpon>MineModsForm.cs</DependentUpon>

@@ -89,9 +89,10 @@ namespace MineMods
             about.Show();
         }
 
-        private void MineModsForm_Load(object sender, EventArgs e)
+        private void сообщитьОбОшибкеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStripComboBox1.SelectedIndex = 0;
+            BugReport reportform = new BugReport();
+            reportform.Show();
         }
     }
 }
