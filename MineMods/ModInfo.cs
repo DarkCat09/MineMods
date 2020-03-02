@@ -175,5 +175,46 @@ namespace MineMods
         {
             Process.Start(receivedMod.dlLink.ToString());
         }
+
+        private void описаниеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.DefaultExt = ".txt";
+            string res = saveFileDialog1.ShowDialog().ToString();
+
+            if (res != "Cancel")
+            {
+                File.WriteAllLines(saveFileDialog1.FileName, textBox1.Lines);
+            }
+        }
+
+        private void картинкуИОписаниеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string modname = receivedMod.modName.Replace("&&", "&").Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "");
+            string pictExt = ".png";
+
+            Directory.CreateDirectory(modname);
+            folderBrowserDialog1.RootFolder = Environment.SpecialFolder.CommonApplicationData;
+            string res = folderBrowserDialog1.ShowDialog().ToString();
+
+            if (!File.Exists(modname + "-icon" + pictExt))
+            {
+                pictExt = ".jpg";
+                if (!File.Exists(modname + "-icon" + pictExt))
+                {
+                    pictExt = "err";
+                    _ = MessageBox.Show("Файл с картинкой не найден!\n\n" +
+                                        "Возможно, иконки/скриншота для этого мода пока что нет.\n\n" +
+                                        "Если Вам нужна картинка, напишите разработчику код ошибки:\n" +
+                                        "MINEMODS_PICTURENOTFOUND <название мода>",
+                                        "Ошибка", MessageBoxButtons.OK,
+                                        MessageBoxIcon.Warning);
+                }
+            }
+
+            if (res != "Cancel")
+            {
+                File.WriteAllLines(folderBrowserDialog1.SelectedPath + "\\" + modname + "-dscr.txt", textBox1.Lines);
+            }
+        }
     }
 }

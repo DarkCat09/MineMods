@@ -88,5 +88,10 @@ namespace MineMods
             AboutProgram about = new AboutProgram();
             about.Show();
         }
+
+        private void MineModsForm_Load(object sender, EventArgs e)
+        {
+            toolStripComboBox1.SelectedIndex = 0;
+        }
     }
 }

@@ -57,6 +57,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.файлСМодамиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сообщитьОбОшибкеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -107,7 +109,9 @@
             // параметрыToolStripMenuItem
             // 
             this.параметрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.шрифтToolStripMenuItem});
+            this.шрифтToolStripMenuItem,
+            this.файлСМодамиToolStripMenuItem,
+            this.сообщитьОбОшибкеToolStripMenuItem});
             this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
             this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(83, 23);
             this.параметрыToolStripMenuItem.Text = "Параметры";
@@ -123,7 +127,7 @@
             this.большой18ptToolStripMenuItem,
             this.оченьБольшой20ptToolStripMenuItem});
             this.шрифтToolStripMenuItem.Name = "шрифтToolStripMenuItem";
-            this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.шрифтToolStripMenuItem.Text = "Шрифт";
             // 
             // оченьМелкий8ptToolStripMenuItem
@@ -187,13 +191,14 @@
             // оПрограммеToolStripMenuItem
             // 
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
             // toolStripComboBox1
             // 
             this.toolStripComboBox1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.toolStripComboBox1.Items.AddRange(new object[] {
             "Все моды",
             "Клиент",
@@ -208,8 +213,7 @@
             "Другое"});
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(121, 23);
-            this.toolStripComboBox1.Text = "Все моды";
-            this.toolStripComboBox1.TextChanged += new System.EventHandler(this.ViewSelectedModsCategory);
+            this.toolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.ViewSelectedModsCategory);
             // 
             // label1
             // 
@@ -347,6 +351,18 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // файлСМодамиToolStripMenuItem
+            // 
+            this.файлСМодамиToolStripMenuItem.Name = "файлСМодамиToolStripMenuItem";
+            this.файлСМодамиToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.файлСМодамиToolStripMenuItem.Text = "Файл с модами";
+            // 
+            // сообщитьОбОшибкеToolStripMenuItem
+            // 
+            this.сообщитьОбОшибкеToolStripMenuItem.Name = "сообщитьОбОшибкеToolStripMenuItem";
+            this.сообщитьОбОшибкеToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.сообщитьОбОшибкеToolStripMenuItem.Text = "Сообщить об ошибке";
+            // 
             // MineModsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,6 +374,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MineModsForm";
             this.Text = "MineMods";
+            this.Load += new System.EventHandler(this.MineModsForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -396,6 +413,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem файлСМодамиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сообщитьОбОшибкеToolStripMenuItem;
     }
 }
 
