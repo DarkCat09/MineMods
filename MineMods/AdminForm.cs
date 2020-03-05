@@ -8,6 +8,7 @@ namespace MineMods
 {
     public partial class AdminForm : Form
     {
+        bool promptPasswd = true;
         string modsDirectory = "C:\\Users\\" + Environment.UserName + "\\AppData\\Roaming\\.minecraft\\mods";
         string modFilename = "";
 
@@ -29,16 +30,28 @@ namespace MineMods
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string promptPasswdFromFile = "";
             string correctPasswdFromFile = "";
 
             byte[] tmpSource;  //source passwd that writed in passwdbox
             byte[] tmpHash;    //hash of passwd that writed in passwdbox
             byte[] correctHash;//hash of correct passwd
 
-            if (File.Exists("admin_passwd.conf"))
+            if (File.Exists(".admin_passwd.conf"))
             {
-                StreamReader s = new StreamReader("admin_passwd.conf");
+                StreamReader s = new StreamReader(".admin_passwd.conf");
                 correctPasswdFromFile = s.ReadLine();
+                promptPasswdFromFile = s.ReadLine();
+
+                if (promptPasswdFromFile == "False")
+                {
+                    promptPasswd = false;
+                }
+                else
+                {
+                    promptPasswd = true;
+                }
+
                 s.Close();
 
                 correctHash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(correctPasswdFromFile));
@@ -48,19 +61,25 @@ namespace MineMods
                 DateTime today = DateTime.Today;
                 string defpasswd = "$changeme" + today.ToString("ddMMyyyy");
 
-                //for debug
-                _ = MessageBox.Show(defpasswd);
-
-                File.WriteAllText("admin_passwd.conf", defpasswd);
+                File.WriteAllText(".admin_passwd.conf", defpasswd + "\n" + promptPasswd.ToString());
                 correctHash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(defpasswd));
+                promptPasswd = true;
             }
 
             if (textBox1.Text == "")
             {
-                _ = MessageBox.Show("Введите пароль!", "Ошибка авторизации",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (promptPasswd)
+                {
+                    _ = MessageBox.Show("Введите пароль!", "Ошибка авторизации",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                tabControl1.Visible = false;
+                    tabControl1.Visible = false;
+                }
+                else
+                {
+                    _ = MessageBox.Show("Авторизация успешна!");
+                    tabControl1.Visible = true;
+                }
             }
             else
             {
@@ -87,7 +106,7 @@ namespace MineMods
 
                 if (bEqual)
                 {
-                    _ = MessageBox.Show("Всё правильно!");
+                    _ = MessageBox.Show("Авторизация успешна!");
                     tabControl1.Visible = true;
                 }
                 else
@@ -139,6 +158,44 @@ namespace MineMods
                 string[] filenamearr = modFilename.Split(new char[] { '\\' });
                 File.Copy(modFilename, modsDirectory + "\\" + filenamearr[filenamearr.Length - 1]);
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (textBox4.Text != "")
+            {
+                File.WriteAllText(".admin_passwd.conf", textBox4.Text + "\n" + promptPasswd.ToString());
+            }
+            else
+            {
+                _ = MessageBox.Show("Введите новый пароль!\n\n" + 
+                                    "Чтобы отключить вход по паролю,\n" +
+                                    "установите параметр \"Требовать пароль?\" в значение \"Нет\".",
+                                    "Ошибка", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            promptPasswd = true;
+
+            StreamReader s = new StreamReader(".admin_passwd.conf");
+            string passwdFromFile = s.ReadLine();
+            s.Close();
+
+            File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString());
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            promptPasswd = false;
+
+            StreamReader s = new StreamReader(".admin_passwd.conf");
+            string passwdFromFile = s.ReadLine();
+            s.Close();
+
+            File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString());
         }
     }
 }
