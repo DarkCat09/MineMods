@@ -219,5 +219,10 @@ namespace MineMods
                 }
             }
         }
+
+        private void добавитьВИзбранноеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FavouriteMods.favmods.Add(receivedMod);
+        }
     }
 }

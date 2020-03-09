@@ -66,6 +66,12 @@
     <Compile Include="BugReport.Designer.cs">
       <DependentUpon>BugReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="FavouriteMods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FavouriteMods.Designer.cs">
+      <DependentUpon>FavouriteMods.cs</DependentUpon>
+    </Compile>
     <Compile Include="MineModsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vars.cs" />
     <EmbeddedResource Include="AboutProgram.resx">
       <DependentUpon>AboutProgram.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BugReport.resx">
       <DependentUpon>BugReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FavouriteMods.resx">
+      <DependentUpon>FavouriteMods.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MineModsForm.resx">
       <DependentUpon>MineModsForm.cs</DependentUpon>
@@ -150,6 +160,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\blocks-mods.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minecraft_load0.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minecraft_load1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minecraft_load2.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,9 +8,17 @@ namespace MineMods
 {
     public partial class AdminForm : Form
     {
+        System.Drawing.Bitmap[] loadgifs =
+        {
+            Properties.Resources.minecraft_load0,
+            Properties.Resources.minecraft_load1,
+            Properties.Resources.minecraft_load2
+        };
+
         bool promptPasswd = true;
-        string modsDirectory = "C:\\Users\\" + Environment.UserName + "\\AppData\\Roaming\\.minecraft\\mods";
         string modFilename = "";
+        string modsDirectory = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)) +
+                               "\\Users\\" + Environment.UserName + "\\AppData\\Roaming\\.minecraft\\mods";
 
         public AdminForm()
         {
@@ -196,6 +204,37 @@ namespace MineMods
             s.Close();
 
             File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString());
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (textBox5.Text != "")
+            {
+                Random rand = new Random();
+                pictureBox1.Image = loadgifs[rand.Next(3)];
+
+                if (textBox5.Text == "start-console")
+                {
+                    if (textBox6.Text != "")
+                        textBox6.Text += Environment.NewLine;
+
+                    textBox6.Text += "Starting console service...";
+                    textBox6.Text += Environment.NewLine + "Console service started sucessfully!";
+
+                    pictureBox1.Image = null;
+                }
+
+                if (textBox5.Text.StartsWith("echo"))
+                {
+                    if (textBox6.Text != "")
+                        textBox6.Text += Environment.NewLine;
+
+                    string[] echotext = textBox5.Text.Split(new char[] { ' ' });
+                    textBox6.Text += echotext[1];
+
+                    pictureBox1.Image = null;
+                }
+            }
         }
     }
 }

@@ -94,5 +94,25 @@ namespace MineMods
             BugReport reportform = new BugReport();
             reportform.Show();
         }
+
+        private void мелкий5ptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Vars.MAINFONT = new System.Drawing.Font("Verdana", 5);
+        }
+
+        private void обычный9ptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Vars.MAINFONT = new System.Drawing.Font("Verdana", 9);
+        }
+
+        private void крупный12ptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Vars.MAINFONT = new System.Drawing.Font("Verdana", 12);
+        }
+
+        private void огромный15ptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Vars.MAINFONT = new System.Drawing.Font("Verdana", 15);
+        }
     }
 }

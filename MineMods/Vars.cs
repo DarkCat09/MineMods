@@ -3,9 +3,9 @@ using System.Drawing;
 
 namespace MineMods
 {
-    public static class Vars
+    class Vars
     {
-        public static Font MAIN_FONT;
+        public static Font MAINFONT = new Font("Verdana", 9);
         public static string modsFile = "mods.txt";
     }
 }

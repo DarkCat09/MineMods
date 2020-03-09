@@ -132,6 +132,36 @@ namespace MineMods.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap minecraft_load0 {
+            get {
+                object obj = ResourceManager.GetObject("minecraft_load0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap minecraft_load1 {
+            get {
+                object obj = ResourceManager.GetObject("minecraft_load1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap minecraft_load2 {
+            get {
+                object obj = ResourceManager.GetObject("minecraft_load2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap transport_mods {
             get {
                 object obj = ResourceManager.GetObject("transport_mods", resourceCulture);

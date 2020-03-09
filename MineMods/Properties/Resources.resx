@@ -140,6 +140,15 @@
     <value>Справка "О нас" ещё не готова.</value>
     <comment>Text "Help About Us Is Not Ready Yet"</comment>
   </data>
+  <data name="minecraft_load0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minecraft_load0.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minecraft_load1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minecraft_load1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minecraft_load2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minecraft_load2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="transport_mods" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\transport-mods.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
