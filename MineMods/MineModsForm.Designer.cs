@@ -36,6 +36,10 @@
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.шрифтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.мелкий5ptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.обычный9ptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.крупный12ptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.огромный15ptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.файлСМодамиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сообщитьОбОшибкеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,10 +57,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.мелкий5ptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.обычный9ptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.крупный12ptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.огромный15ptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.избранныеМодыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +80,7 @@
             this.модToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.обновитьToolStripMenuItem,
             this.скачатьToolStripMenuItem,
+            this.избранныеМодыToolStripMenuItem,
             this.выходToolStripMenuItem});
             this.модToolStripMenuItem.Name = "модToolStripMenuItem";
             this.модToolStripMenuItem.Size = new System.Drawing.Size(43, 23);
@@ -125,11 +127,40 @@
             this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.шрифтToolStripMenuItem.Text = "Шрифт";
             // 
+            // мелкий5ptToolStripMenuItem
+            // 
+            this.мелкий5ptToolStripMenuItem.Name = "мелкий5ptToolStripMenuItem";
+            this.мелкий5ptToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.мелкий5ptToolStripMenuItem.Text = "Мелкий (5pt)";
+            this.мелкий5ptToolStripMenuItem.Click += new System.EventHandler(this.мелкий5ptToolStripMenuItem_Click);
+            // 
+            // обычный9ptToolStripMenuItem
+            // 
+            this.обычный9ptToolStripMenuItem.Name = "обычный9ptToolStripMenuItem";
+            this.обычный9ptToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.обычный9ptToolStripMenuItem.Text = "Обычный (9pt)";
+            this.обычный9ptToolStripMenuItem.Click += new System.EventHandler(this.обычный9ptToolStripMenuItem_Click);
+            // 
+            // крупный12ptToolStripMenuItem
+            // 
+            this.крупный12ptToolStripMenuItem.Name = "крупный12ptToolStripMenuItem";
+            this.крупный12ptToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.крупный12ptToolStripMenuItem.Text = "Крупный (12pt)";
+            this.крупный12ptToolStripMenuItem.Click += new System.EventHandler(this.крупный12ptToolStripMenuItem_Click);
+            // 
+            // огромный15ptToolStripMenuItem
+            // 
+            this.огромный15ptToolStripMenuItem.Name = "огромный15ptToolStripMenuItem";
+            this.огромный15ptToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.огромный15ptToolStripMenuItem.Text = "Огромный (15pt)";
+            this.огромный15ptToolStripMenuItem.Click += new System.EventHandler(this.огромный15ptToolStripMenuItem_Click);
+            // 
             // файлСМодамиToolStripMenuItem
             // 
             this.файлСМодамиToolStripMenuItem.Name = "файлСМодамиToolStripMenuItem";
             this.файлСМодамиToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.файлСМодамиToolStripMenuItem.Text = "Файл с модами";
+            this.файлСМодамиToolStripMenuItem.Click += new System.EventHandler(this.файлСМодамиToolStripMenuItem_Click);
             // 
             // сообщитьОбОшибкеToolStripMenuItem
             // 
@@ -150,14 +181,14 @@
             // оНасToolStripMenuItem
             // 
             this.оНасToolStripMenuItem.Name = "оНасToolStripMenuItem";
-            this.оНасToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.оНасToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.оНасToolStripMenuItem.Text = "О нас";
             this.оНасToolStripMenuItem.Click += new System.EventHandler(this.оНасToolStripMenuItem_Click);
             // 
             // оПрограммеToolStripMenuItem
             // 
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
@@ -323,33 +354,12 @@
             this.openFileDialog1.FileName = "mods.txt";
             this.openFileDialog1.Title = "Выберите файл с модами";
             // 
-            // мелкий5ptToolStripMenuItem
+            // избранныеМодыToolStripMenuItem
             // 
-            this.мелкий5ptToolStripMenuItem.Name = "мелкий5ptToolStripMenuItem";
-            this.мелкий5ptToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.мелкий5ptToolStripMenuItem.Text = "Мелкий (5pt)";
-            this.мелкий5ptToolStripMenuItem.Click += new System.EventHandler(this.мелкий5ptToolStripMenuItem_Click);
-            // 
-            // обычный9ptToolStripMenuItem
-            // 
-            this.обычный9ptToolStripMenuItem.Name = "обычный9ptToolStripMenuItem";
-            this.обычный9ptToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.обычный9ptToolStripMenuItem.Text = "Обычный (9pt)";
-            this.обычный9ptToolStripMenuItem.Click += new System.EventHandler(this.обычный9ptToolStripMenuItem_Click);
-            // 
-            // крупный12ptToolStripMenuItem
-            // 
-            this.крупный12ptToolStripMenuItem.Name = "крупный12ptToolStripMenuItem";
-            this.крупный12ptToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.крупный12ptToolStripMenuItem.Text = "Крупный (12pt)";
-            this.крупный12ptToolStripMenuItem.Click += new System.EventHandler(this.крупный12ptToolStripMenuItem_Click);
-            // 
-            // огромный15ptToolStripMenuItem
-            // 
-            this.огромный15ptToolStripMenuItem.Name = "огромный15ptToolStripMenuItem";
-            this.огромный15ptToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.огромный15ptToolStripMenuItem.Text = "Огромный (15pt)";
-            this.огромный15ptToolStripMenuItem.Click += new System.EventHandler(this.огромный15ptToolStripMenuItem_Click);
+            this.избранныеМодыToolStripMenuItem.Name = "избранныеМодыToolStripMenuItem";
+            this.избранныеМодыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.избранныеМодыToolStripMenuItem.Text = "Избранные моды";
+            this.избранныеМодыToolStripMenuItem.Click += new System.EventHandler(this.избранныеМодыToolStripMenuItem_Click);
             // 
             // MineModsForm
             // 
@@ -400,6 +410,7 @@
         private System.Windows.Forms.ToolStripMenuItem обычный9ptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem крупный12ptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem огромный15ptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem избранныеМодыToolStripMenuItem;
     }
 }
 

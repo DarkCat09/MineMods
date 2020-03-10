@@ -28,7 +28,7 @@ namespace MineMods
             this.Text = "Моды - " + category;
 
             #region checking category fromfile
-            StreamReader s = new StreamReader("mods.txt");
+            StreamReader s = new StreamReader(Vars.modsFile);
             string line = "";
 
             line = s.ReadLine();

@@ -23,7 +23,7 @@ namespace MineMods
             #region description file
             try
             {
-                string str = modName.Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "") +
+                string str = "mods\\" + modName.Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "") +
                             "-dscr.txt";
                 modDescription = File.ReadAllLines(str);
             }
@@ -77,7 +77,7 @@ namespace MineMods
             if (modDescription != null)
             {
                 textBox1.Lines = modDescription;
-                string str = modName.Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "") + "-icon";
+                string str = "mods\\" + modName.Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "") + "-icon";
 
                 try
                 {
@@ -128,7 +128,7 @@ namespace MineMods
             WebClient c = new WebClient();
             string file = receivedMod.modName + ".jar";
 
-            //c.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+            c.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
 
             if (!File.Exists(file))
             {
@@ -142,7 +142,7 @@ namespace MineMods
             }
             catch (WebException ex)
             {
-                _ = MessageBox.Show("Ошибка" + ex.Message);
+                _ = MessageBox.Show("Ошибка " + ex.Message);
                 Close();
             }
         }
@@ -152,7 +152,7 @@ namespace MineMods
             WebClient c = new WebClient();
             string file = receivedMod.modName + ".zip";
 
-            //c.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+            c.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
 
             if (!File.Exists(file))
             {
@@ -164,9 +164,9 @@ namespace MineMods
             {
                 c.DownloadFile(receivedMod.dlLink, file);
             }
-            catch (WebException)
+            catch (WebException ex)
             {
-                _ = MessageBox.Show("Ошибка");
+                _ = MessageBox.Show("Ошибка " + ex);
                 Close();
             }
         }
@@ -195,10 +195,10 @@ namespace MineMods
             Directory.CreateDirectory(modname);
             string res = folderBrowserDialog1.ShowDialog().ToString();
 
-            if (!File.Exists(modname + "-icon" + pictExt))
+            if (!File.Exists("mods\\" + modname + "-icon" + pictExt))
             {
                 pictExt = ".jpg";
-                if (!File.Exists(modname + "-icon" + pictExt))
+                if (!File.Exists("mods\\" + modname + "-icon" + pictExt))
                 {
                     pictExt = "err";
                     _ = MessageBox.Show("Файл с картинкой не найден!\n\n" +
@@ -215,7 +215,7 @@ namespace MineMods
                 File.WriteAllLines(folderBrowserDialog1.SelectedPath + "\\" + modname + "-dscr.txt", textBox1.Lines);
                 if (pictExt != "err")
                 {
-                    File.Copy(modname + "-icon" + pictExt, folderBrowserDialog1.SelectedPath + "\\" + modname + "-icon" + pictExt);
+                    File.Copy("mods\\" + modname + "-icon" + pictExt, folderBrowserDialog1.SelectedPath + "\\" + modname + "-icon" + pictExt);
                 }
             }
         }

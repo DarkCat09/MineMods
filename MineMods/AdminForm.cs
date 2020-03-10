@@ -16,6 +16,7 @@ namespace MineMods
         };
 
         bool promptPasswd = true;
+        bool console_started = false;
         string modFilename = "";
         string modsDirectory = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)) +
                                "\\Users\\" + Environment.UserName + "\\AppData\\Roaming\\.minecraft\\mods";
@@ -219,20 +220,47 @@ namespace MineMods
                         textBox6.Text += Environment.NewLine;
 
                     textBox6.Text += "Starting console service...";
+                    console_started = true;
                     textBox6.Text += Environment.NewLine + "Console service started sucessfully!";
 
                     pictureBox1.Image = null;
                 }
-
-                if (textBox5.Text.StartsWith("echo"))
+                else if (textBox5.Text == "stop-console")
                 {
                     if (textBox6.Text != "")
                         textBox6.Text += Environment.NewLine;
 
-                    string[] echotext = textBox5.Text.Split(new char[] { ' ' });
-                    textBox6.Text += echotext[1];
+                    textBox6.Text += "Stopping console service...";
+                    console_started = false;
+                    textBox6.Text += Environment.NewLine + "Console service stopped!";
 
                     pictureBox1.Image = null;
+                }
+                else
+                {
+                    if (console_started)
+                    {
+                        if (textBox5.Text.StartsWith("echo"))
+                        {
+                            if (textBox6.Text != "")
+                                textBox6.Text += Environment.NewLine;
+
+                            string[] echotext = textBox5.Text.Split(new char[] { ' ' });
+                            textBox6.Text += echotext[1];
+
+                            pictureBox1.Image = null;
+                        }
+                    }
+                    else
+                    {
+                        if (textBox6.Text != "")
+                            textBox6.Text += Environment.NewLine;
+
+                        textBox6.Text += "Command not found!";
+                        textBox6.Text += Environment.NewLine + "First try command \"start-console\".";
+
+                        pictureBox1.Image = null;
+                    }
                 }
             }
         }

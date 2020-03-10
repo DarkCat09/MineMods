@@ -114,5 +114,21 @@ namespace MineMods
         {
             Vars.MAINFONT = new System.Drawing.Font("Verdana", 15);
         }
+
+        private void файлСМодамиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string res = openFileDialog1.ShowDialog().ToString();
+
+            if (res != "Cancel")
+            {
+                Vars.modsFile = openFileDialog1.FileName;
+            }
+        }
+
+        private void избранныеМодыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FavouriteMods favform = new FavouriteMods();
+            favform.Show();
+        }
     }
 }
