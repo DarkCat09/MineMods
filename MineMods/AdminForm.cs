@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
@@ -211,30 +212,31 @@ namespace MineMods
         {
             if (textBox5.Text != "")
             {
+                bool correctcmd = true;
                 Random rand = new Random();
                 pictureBox1.Image = loadgifs[rand.Next(3)];
 
                 if (textBox5.Text == "start-console")
                 {
+                    correctcmd = true;
+
                     if (textBox6.Text != "")
                         textBox6.Text += Environment.NewLine;
 
                     textBox6.Text += "Starting console service...";
                     console_started = true;
                     textBox6.Text += Environment.NewLine + "Console service started sucessfully!";
-
-                    pictureBox1.Image = null;
                 }
                 else if (textBox5.Text == "stop-console")
                 {
+                    correctcmd = true;
+
                     if (textBox6.Text != "")
                         textBox6.Text += Environment.NewLine;
 
                     textBox6.Text += "Stopping console service...";
                     console_started = false;
                     textBox6.Text += Environment.NewLine + "Console service stopped!";
-
-                    pictureBox1.Image = null;
                 }
                 else
                 {
@@ -242,27 +244,131 @@ namespace MineMods
                     {
                         if (textBox5.Text.StartsWith("echo"))
                         {
+                            correctcmd = true;
+
                             if (textBox6.Text != "")
                                 textBox6.Text += Environment.NewLine;
 
-                            string[] echotext = textBox5.Text.Split(new char[] { ' ' });
-                            textBox6.Text += echotext[1];
+                            string[] echotext = textBox5.Text.Split(new char[] { '\"' });
 
-                            pictureBox1.Image = null;
+                            if (echotext.Length == 3 || echotext.Length == 1)
+                            {
+                                if (echotext.Length == 1)
+                                {
+                                    textBox6.Text += Environment.NewLine;
+                                }
+                                else
+                                {
+                                    textBox6.Text += echotext[1];
+                                }
+                            }
+                            else
+                            {
+                                textBox6.Text += "echo: Invalid syntax!" + Environment.NewLine;
+                                textBox6.Text += "Usage ECHO-command:\n echo [\"text\"]";
+                            }
+                        }
+                        else if (textBox5.Text.StartsWith("cmd"))
+                        {
+                            _ = MessageBox.Show("Эта функция ещё не работает должным образом.");
+
+                            /*
+                            correctcmd = true;
+
+                            if (textBox6.Text != "")
+                                textBox6.Text += Environment.NewLine;
+
+                            string[] cmdtext = textBox5.Text.Split(new char[] { '\"' });
+
+                            if (cmdtext.Length == 3)
+                            {
+                                string command = "";
+                                bool pauseAfterRunningCmd = false;
+                                if (cmdtext[2].StartsWith(" pause"))
+                                {
+                                    pauseAfterRunningCmd = true;
+                                }
+
+                                if (pauseAfterRunningCmd)
+                                {
+                                    command = cmdtext[1] + @" & pause";
+                                }
+                                else
+                                {
+                                    command = cmdtext[1];
+                                }
+
+                                //for debug
+                                textBox6.Text += cmdtext[1] + " _ " + pauseAfterRunningCmd.ToString();
+
+                                ProcessStartInfo pinfo = new ProcessStartInfo(@"cmd.exe", command);
+
+                                if (!pauseAfterRunningCmd)
+                                {
+                                    pinfo.WindowStyle = ProcessWindowStyle.Hidden;
+                                    pinfo.RedirectStandardOutput = true;
+                                    pinfo.UseShellExecute = false;
+                                    pinfo.CreateNoWindow = true;
+                                }
+
+                                Process p = Process.Start(pinfo);
+
+                                if (!pauseAfterRunningCmd)
+                                {
+                                    StreamReader cmdoutreader = p.StandardOutput;
+                                    textBox6.Text += "CMD started!" + Environment.NewLine;
+                                    textBox6.Text += cmdoutreader.ReadToEnd();
+
+                                    cmdoutreader.Close();
+                                    p.WaitForExit();
+
+                                    textBox6.Text += "CMD stoped!";
+                                }
+                            }
+                            else
+                            {
+                                textBox6.Text += "cmd: Invalid syntax!" + Environment.NewLine;
+                                textBox6.Text += "Usage CMD-command:\n cmd <\"command\"> [pause]";
+                            }
+                            */
+                        }
+                        else
+                        {
+                            correctcmd = false;
                         }
                     }
                     else
                     {
+                        correctcmd = false;
                         if (textBox6.Text != "")
                             textBox6.Text += Environment.NewLine;
 
                         textBox6.Text += "Command not found!";
                         textBox6.Text += Environment.NewLine + "First try command \"start-console\".";
-
-                        pictureBox1.Image = null;
                     }
                 }
+
+                if (!correctcmd)
+                {
+                    if (textBox6.Text != "")
+                        textBox6.Text += Environment.NewLine;
+
+                    textBox6.Text += "Command not found!";
+                    textBox6.Text += Environment.NewLine + "First try command \"start-console\".";
+                }
+
+                pictureBox1.Image = null;
             }
+        }
+
+        private void показатьПарольToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.UseSystemPasswordChar = false;
+        }
+
+        private void скрытьПарольToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.UseSystemPasswordChar = true;
         }
     }
 }
