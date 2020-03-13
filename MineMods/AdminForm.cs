@@ -20,7 +20,7 @@ namespace MineMods
         bool console_started = false;
         string modFilename = "";
         string modsDirectory = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)) +
-                               "\\Users\\" + Environment.UserName + "\\AppData\\Roaming\\.minecraft\\mods";
+                               "Users\\" + Environment.UserName + "\\AppData\\Roaming\\.minecraft\\mods";
 
         public AdminForm()
         {
@@ -41,7 +41,8 @@ namespace MineMods
         private void button1_Click(object sender, EventArgs e)
         {
             string promptPasswdFromFile = "";
-            string correctPasswdFromFile = "";
+            //string correctPasswdFromFile = "";
+            string correctHashFromFile = "";
 
             byte[] tmpSource;  //source passwd that writed in passwdbox
             byte[] tmpHash;    //hash of passwd that writed in passwdbox
@@ -50,7 +51,8 @@ namespace MineMods
             if (File.Exists(".admin_passwd.conf"))
             {
                 StreamReader s = new StreamReader(".admin_passwd.conf");
-                correctPasswdFromFile = s.ReadLine();
+                //correctPasswdFromFile = s.ReadLine();
+                correctHashFromFile = s.ReadLine();
                 promptPasswdFromFile = s.ReadLine();
 
                 if (promptPasswdFromFile == "False")
@@ -64,15 +66,17 @@ namespace MineMods
 
                 s.Close();
 
-                correctHash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(correctPasswdFromFile));
+                //correctHash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(correctPasswdFromFile));
+                correctHash = UnicodeEncoding.Unicode.GetBytes(correctHashFromFile);
             }
             else
             {
                 DateTime today = DateTime.Today;
                 string defpasswd = "$changeme" + today.ToString("ddMMyyyy");
+                byte[] defpasswdhash = new MD5CryptoServiceProvider().ComputeHash(UnicodeEncoding.Unicode.GetBytes(defpasswd));
 
-                File.WriteAllText(".admin_passwd.conf", defpasswd + "\n" + promptPasswd.ToString());
-                correctHash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(defpasswd));
+                File.WriteAllText(".admin_passwd.conf", UnicodeEncoding.Unicode.GetString(defpasswdhash) + "\n" + promptPasswd.ToString());
+                correctHash = new MD5CryptoServiceProvider().ComputeHash(UnicodeEncoding.Unicode.GetBytes(defpasswd));
                 promptPasswd = true;
             }
 
@@ -93,11 +97,11 @@ namespace MineMods
             }
             else
             {
-                tmpSource = ASCIIEncoding.ASCII.GetBytes(textBox1.Text);
+                tmpSource = UnicodeEncoding.Unicode.GetBytes(textBox1.Text);
                 tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
 
                 //for debug
-                _ = MessageBox.Show(ByteArrayToString(correctHash));
+                _ = MessageBox.Show(UnicodeEncoding.Unicode.GetString(correctHash));
 
                 //comparing hash
                 bool bEqual = false;
@@ -125,20 +129,6 @@ namespace MineMods
                     tabControl1.Visible = false;
                 }
             }
-        }
-
-        //for debug
-        private string ByteArrayToString(byte[] arrInput)
-        {
-            int i;
-            StringBuilder sOutput = new StringBuilder(arrInput.Length);
-
-            for (i = 0; i < arrInput.Length - 1; i++)
-            {
-                sOutput.Append(arrInput[i].ToString("X2"));
-            }
-
-            return sOutput.ToString();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -174,7 +164,9 @@ namespace MineMods
         {
             if (textBox4.Text != "")
             {
-                File.WriteAllText(".admin_passwd.conf", textBox4.Text + "\n" + promptPasswd.ToString());
+                File.WriteAllText(".admin_passwd.conf",
+                                  UnicodeEncoding.Unicode.GetString(new MD5CryptoServiceProvider().ComputeHash(UnicodeEncoding.Unicode.GetBytes(textBox4.Text))) + 
+                                  "\n" + promptPasswd.ToString());
             }
             else
             {

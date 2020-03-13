@@ -103,9 +103,10 @@
             // 
             // textBox1
             // 
+            this.textBox1.ContextMenuStrip = this.contextMenuStrip2;
             this.textBox1.Location = new System.Drawing.Point(94, 14);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(178, 20);
             this.textBox1.TabIndex = 2;
             this.textBox1.UseSystemPasswordChar = true;
             this.textBox1.Visible = false;
@@ -550,14 +551,14 @@
             // показатьПарольToolStripMenuItem
             // 
             this.показатьПарольToolStripMenuItem.Name = "показатьПарольToolStripMenuItem";
-            this.показатьПарольToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.показатьПарольToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.показатьПарольToolStripMenuItem.Text = "Показать пароль";
             this.показатьПарольToolStripMenuItem.Click += new System.EventHandler(this.показатьПарольToolStripMenuItem_Click);
             // 
             // скрытьПарольToolStripMenuItem
             // 
             this.скрытьПарольToolStripMenuItem.Name = "скрытьПарольToolStripMenuItem";
-            this.скрытьПарольToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.скрытьПарольToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.скрытьПарольToolStripMenuItem.Text = "Скрыть пароль";
             this.скрытьПарольToolStripMenuItem.Click += new System.EventHandler(this.скрытьПарольToolStripMenuItem_Click);
             // 

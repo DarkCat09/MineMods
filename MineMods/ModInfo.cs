@@ -19,6 +19,7 @@ namespace MineMods
             string modName = mod.modName.Replace("&&", "&");
 
             this.Text = "Мод " + modName;
+            textBox1.Font = Vars.MAINFONT;
 
             #region description file
             try

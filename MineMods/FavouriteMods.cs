@@ -26,16 +26,29 @@ namespace MineMods
             }
         }
 
+        private void OpenFavModDescription(object sender, EventArgs e)
+        {
+            int n = 0;
+            _ = Int32.TryParse(((Label)sender).AccessibleName, out n);
+
+            if (n <= favmods.Count)
+            {
+                ModInfo mf = new ModInfo(favmods[n]);
+                mf.Show();
+            }
+        }
+
         private void AddFavMod(Mods.Mod mod, int n)
         {
-            Label label1 = new Label();
-            label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Verdana", Vars.MAINFONT.SizeInPoints + 3);
-            label1.Location = new System.Drawing.Point(10, 48*(n+1));
-            label1.Size = new System.Drawing.Size(353, 18);
-            label1.Text = mod.modName;
-            label1.AccessibleName = n.ToString();
-            Controls.Add(label1);
+            Label modlabel = new Label();
+            modlabel.AutoSize = true;
+            modlabel.Font = new System.Drawing.Font("Verdana", Vars.MAINFONT.SizeInPoints + 3);
+            modlabel.Location = new System.Drawing.Point(10, 48*(n+1));
+            modlabel.Size = new System.Drawing.Size(353, 18);
+            modlabel.Text = mod.modName;
+            modlabel.AccessibleName = n.ToString();
+            modlabel.Click += new EventHandler(OpenFavModDescription);
+            Controls.Add(modlabel);
         }
 
         private void button3_Click(object sender, EventArgs e)
