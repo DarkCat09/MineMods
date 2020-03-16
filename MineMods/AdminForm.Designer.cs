@@ -32,6 +32,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ввестиПарольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.показатьПарольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.скрытьПарольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -74,17 +77,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.показатьПарольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.скрытьПарольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -110,6 +110,28 @@
             this.textBox1.TabIndex = 2;
             this.textBox1.UseSystemPasswordChar = true;
             this.textBox1.Visible = false;
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.показатьПарольToolStripMenuItem,
+            this.скрытьПарольToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(168, 48);
+            // 
+            // показатьПарольToolStripMenuItem
+            // 
+            this.показатьПарольToolStripMenuItem.Name = "показатьПарольToolStripMenuItem";
+            this.показатьПарольToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.показатьПарольToolStripMenuItem.Text = "Показать пароль";
+            this.показатьПарольToolStripMenuItem.Click += new System.EventHandler(this.показатьПарольToolStripMenuItem_Click);
+            // 
+            // скрытьПарольToolStripMenuItem
+            // 
+            this.скрытьПарольToolStripMenuItem.Name = "скрытьПарольToolStripMenuItem";
+            this.скрытьПарольToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.скрытьПарольToolStripMenuItem.Text = "Скрыть пароль";
+            this.скрытьПарольToolStripMenuItem.Click += new System.EventHandler(this.скрытьПарольToolStripMenuItem_Click);
             // 
             // button1
             // 
@@ -497,10 +519,14 @@
             // 
             // textBox6
             // 
+            this.textBox6.BackColor = System.Drawing.Color.White;
             this.textBox6.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox6.ForeColor = System.Drawing.Color.DarkSlateBlue;
             this.textBox6.Location = new System.Drawing.Point(10, 76);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox6.Size = new System.Drawing.Size(486, 172);
             this.textBox6.TabIndex = 2;
             // 
@@ -540,28 +566,6 @@
             // 
             this.openFileDialog1.Title = "Выберите мод";
             // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.показатьПарольToolStripMenuItem,
-            this.скрытьПарольToolStripMenuItem});
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(168, 48);
-            // 
-            // показатьПарольToolStripMenuItem
-            // 
-            this.показатьПарольToolStripMenuItem.Name = "показатьПарольToolStripMenuItem";
-            this.показатьПарольToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.показатьПарольToolStripMenuItem.Text = "Показать пароль";
-            this.показатьПарольToolStripMenuItem.Click += new System.EventHandler(this.показатьПарольToolStripMenuItem_Click);
-            // 
-            // скрытьПарольToolStripMenuItem
-            // 
-            this.скрытьПарольToolStripMenuItem.Name = "скрытьПарольToolStripMenuItem";
-            this.скрытьПарольToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.скрытьПарольToolStripMenuItem.Text = "Скрыть пароль";
-            this.скрытьПарольToolStripMenuItem.Click += new System.EventHandler(this.скрытьПарольToolStripMenuItem_Click);
-            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -574,6 +578,7 @@
             this.Name = "AdminForm";
             this.Text = "AdminForm";
             this.contextMenuStrip1.ResumeLayout(false);
+            this.contextMenuStrip2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -584,7 +589,6 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

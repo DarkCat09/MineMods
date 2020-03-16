@@ -50,24 +50,20 @@ namespace MineMods
 
             if (File.Exists(".admin_passwd.conf"))
             {
-                StreamReader s = new StreamReader(".admin_passwd.conf");
+                StreamReader s = new StreamReader(".admin_passwd.conf", UnicodeEncoding.Unicode);
                 //correctPasswdFromFile = s.ReadLine();
                 correctHashFromFile = s.ReadLine();
                 promptPasswdFromFile = s.ReadLine();
 
-                if (promptPasswdFromFile == "False")
-                {
-                    promptPasswd = false;
-                }
-                else
-                {
-                    promptPasswd = true;
-                }
+                promptPasswd = (promptPasswdFromFile != "False");
 
                 s.Close();
 
                 //correctHash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(correctPasswdFromFile));
                 correctHash = UnicodeEncoding.Unicode.GetBytes(correctHashFromFile);
+
+                //for debug
+                _ = MessageBox.Show(UnicodeEncoding.Unicode.GetString(correctHash));
             }
             else
             {
@@ -75,24 +71,22 @@ namespace MineMods
                 string defpasswd = "$changeme" + today.ToString("ddMMyyyy");
                 byte[] defpasswdhash = new MD5CryptoServiceProvider().ComputeHash(UnicodeEncoding.Unicode.GetBytes(defpasswd));
 
-                File.WriteAllText(".admin_passwd.conf", UnicodeEncoding.Unicode.GetString(defpasswdhash) + "\n" + promptPasswd.ToString());
+                File.WriteAllText(".admin_passwd.conf", UnicodeEncoding.Unicode.GetString(defpasswdhash) + "\n" + promptPasswd.ToString(), Encoding.Unicode);
                 correctHash = new MD5CryptoServiceProvider().ComputeHash(UnicodeEncoding.Unicode.GetBytes(defpasswd));
                 promptPasswd = true;
             }
 
             if (textBox1.Text == "")
             {
+                tabControl1.Visible = !promptPasswd;
                 if (promptPasswd)
                 {
                     _ = MessageBox.Show("Введите пароль!", "Ошибка авторизации",
                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    tabControl1.Visible = false;
                 }
                 else
                 {
                     _ = MessageBox.Show("Авторизация успешна!");
-                    tabControl1.Visible = true;
                 }
             }
             else
@@ -105,18 +99,7 @@ namespace MineMods
 
                 //comparing hash
                 bool bEqual = false;
-                if (tmpHash.Length == tmpHash.Length)
-                {
-                    int i = 0;
-                    while ((i < tmpHash.Length) && (tmpHash[i] == correctHash[i]))
-                    {
-                        i += 1;
-                    }
-                    if (i == tmpHash.Length)
-                    {
-                        bEqual = true;
-                    }
-                }
+                bEqual = (UnicodeEncoding.Unicode.GetString(tmpHash) == UnicodeEncoding.Unicode.GetString(correctHash));
 
                 if (bEqual)
                 {
@@ -182,36 +165,33 @@ namespace MineMods
         {
             promptPasswd = true;
 
-            StreamReader s = new StreamReader(".admin_passwd.conf");
+            StreamReader s = new StreamReader(".admin_passwd.conf", UnicodeEncoding.Unicode);
             string passwdFromFile = s.ReadLine();
             s.Close();
 
-            File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString());
+            File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString(), UnicodeEncoding.Unicode);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             promptPasswd = false;
 
-            StreamReader s = new StreamReader(".admin_passwd.conf");
+            StreamReader s = new StreamReader(".admin_passwd.conf", UnicodeEncoding.Unicode);
             string passwdFromFile = s.ReadLine();
             s.Close();
 
-            File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString());
+            File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString(), UnicodeEncoding.Unicode);
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
             if (textBox5.Text != "")
             {
-                bool correctcmd = true;
                 Random rand = new Random();
                 pictureBox1.Image = loadgifs[rand.Next(3)];
 
                 if (textBox5.Text == "start-console")
                 {
-                    correctcmd = true;
-
                     if (textBox6.Text != "")
                         textBox6.Text += Environment.NewLine;
 
@@ -221,8 +201,6 @@ namespace MineMods
                 }
                 else if (textBox5.Text == "stop-console")
                 {
-                    correctcmd = true;
-
                     if (textBox6.Text != "")
                         textBox6.Text += Environment.NewLine;
 
@@ -230,117 +208,83 @@ namespace MineMods
                     console_started = false;
                     textBox6.Text += Environment.NewLine + "Console service stopped!";
                 }
-                else
+                else if (console_started && textBox5.Text.StartsWith("echo"))
                 {
-                    if (console_started)
+                    if (textBox6.Text != "")
+                        textBox6.Text += Environment.NewLine;
+
+                    string[] echotext = textBox5.Text.Split(new char[] { '\"' });
+
+                    if (echotext.Length == 1)
                     {
-                        if (textBox5.Text.StartsWith("echo"))
+                        textBox6.Text += Environment.NewLine;
+                    }
+                    else if (echotext.Length == 3)
+                    {
+                        textBox6.Text += echotext[1];
+                    }
+                    else
+                    {
+                        textBox6.Text += "echo: Invalid syntax!" + Environment.NewLine;
+                        textBox6.Text += "Usage ECHO-command:\n echo [\"text\"]";
+                    }
+                }
+                else if (console_started && textBox5.Text.StartsWith("cmd"))
+                {
+                    //_ = MessageBox.Show("Эта функция ещё не работает должным образом.");
+
+                    if (textBox6.Text != "")
+                        textBox6.Text += Environment.NewLine;
+
+                    string[] cmdtext = textBox5.Text.Split(new char[] { '\"' });
+
+                    if (cmdtext.Length == 3)
+                    {
+                        bool pauseAfterRunningCmd = (cmdtext[2].StartsWith(" pause"));
+                                
+                        string command = cmdtext[1];
+                        if (pauseAfterRunningCmd)
                         {
-                            correctcmd = true;
-
-                            if (textBox6.Text != "")
-                                textBox6.Text += Environment.NewLine;
-
-                            string[] echotext = textBox5.Text.Split(new char[] { '\"' });
-
-                            if (echotext.Length == 3 || echotext.Length == 1)
-                            {
-                                if (echotext.Length == 1)
-                                {
-                                    textBox6.Text += Environment.NewLine;
-                                }
-                                else
-                                {
-                                    textBox6.Text += echotext[1];
-                                }
-                            }
-                            else
-                            {
-                                textBox6.Text += "echo: Invalid syntax!" + Environment.NewLine;
-                                textBox6.Text += "Usage ECHO-command:\n echo [\"text\"]";
-                            }
+                            command += " & pause";
                         }
-                        else if (textBox5.Text.StartsWith("cmd"))
+
+                        //for debug
+                        textBox6.Text += cmdtext[1] + " _ " + pauseAfterRunningCmd.ToString();
+                        textBox6.Text += Environment.NewLine;
+
+                        ProcessStartInfo pinfo = new ProcessStartInfo("cmd.exe", "/c " + command);
+                        pinfo.UseShellExecute = false;
+                        pinfo.RedirectStandardInput = true;
+
+                        if (!pauseAfterRunningCmd)
                         {
-                            _ = MessageBox.Show("Эта функция ещё не работает должным образом.");
-
-                            /*
-                            correctcmd = true;
-
-                            if (textBox6.Text != "")
-                                textBox6.Text += Environment.NewLine;
-
-                            string[] cmdtext = textBox5.Text.Split(new char[] { '\"' });
-
-                            if (cmdtext.Length == 3)
-                            {
-                                string command = "";
-                                bool pauseAfterRunningCmd = false;
-                                if (cmdtext[2].StartsWith(" pause"))
-                                {
-                                    pauseAfterRunningCmd = true;
-                                }
-
-                                if (pauseAfterRunningCmd)
-                                {
-                                    command = cmdtext[1] + @" & pause";
-                                }
-                                else
-                                {
-                                    command = cmdtext[1];
-                                }
-
-                                //for debug
-                                textBox6.Text += cmdtext[1] + " _ " + pauseAfterRunningCmd.ToString();
-
-                                ProcessStartInfo pinfo = new ProcessStartInfo(@"cmd.exe", command);
-
-                                if (!pauseAfterRunningCmd)
-                                {
-                                    pinfo.WindowStyle = ProcessWindowStyle.Hidden;
-                                    pinfo.RedirectStandardOutput = true;
-                                    pinfo.UseShellExecute = false;
-                                    pinfo.CreateNoWindow = true;
-                                }
-
-                                Process p = Process.Start(pinfo);
-
-                                if (!pauseAfterRunningCmd)
-                                {
-                                    StreamReader cmdoutreader = p.StandardOutput;
-                                    textBox6.Text += "CMD started!" + Environment.NewLine;
-                                    textBox6.Text += cmdoutreader.ReadToEnd();
-
-                                    cmdoutreader.Close();
-                                    p.WaitForExit();
-
-                                    textBox6.Text += "CMD stoped!";
-                                }
-                            }
-                            else
-                            {
-                                textBox6.Text += "cmd: Invalid syntax!" + Environment.NewLine;
-                                textBox6.Text += "Usage CMD-command:\n cmd <\"command\"> [pause]";
-                            }
-                            */
+                            pinfo.WindowStyle = ProcessWindowStyle.Hidden;
+                            pinfo.StandardOutputEncoding = Encoding.GetEncoding(866);
+                            pinfo.RedirectStandardOutput = true;
+                            pinfo.CreateNoWindow = true;
                         }
-                        else
+
+                        Process p = new Process();
+                        p.StartInfo = pinfo;
+                        p.Start();
+
+                        if (!pauseAfterRunningCmd)
                         {
-                            correctcmd = false;
+                            textBox6.Text += "CMD started!" + Environment.NewLine;
+
+                            textBox6.Text += p.StandardOutput.ReadToEnd();
+                            p.WaitForExit(10000);
+
+                            textBox6.Text += "CMD stopped!";
                         }
                     }
                     else
                     {
-                        correctcmd = false;
-                        if (textBox6.Text != "")
-                            textBox6.Text += Environment.NewLine;
-
-                        textBox6.Text += "Command not found!";
-                        textBox6.Text += Environment.NewLine + "First try command \"start-console\".";
+                        textBox6.Text += "cmd: Invalid syntax!" + Environment.NewLine;
+                        textBox6.Text += "Usage CMD-command:\n cmd <\"command\"> [pause]";
                     }
-                }
-
-                if (!correctcmd)
+                }    
+                else
                 {
                     if (textBox6.Text != "")
                         textBox6.Text += Environment.NewLine;
@@ -349,6 +293,7 @@ namespace MineMods
                     textBox6.Text += Environment.NewLine + "First try command \"start-console\".";
                 }
 
+                //System.Threading.Thread.Sleep(1000);
                 pictureBox1.Image = null;
             }
         }
