@@ -33,6 +33,7 @@
             this.модToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.скачатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.избранныеМодыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.шрифтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +58,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.избранныеМодыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -89,20 +89,27 @@
             // обновитьToolStripMenuItem
             // 
             this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.обновитьToolStripMenuItem.Text = "Обновить";
             // 
             // скачатьToolStripMenuItem
             // 
             this.скачатьToolStripMenuItem.Name = "скачатьToolStripMenuItem";
-            this.скачатьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.скачатьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.скачатьToolStripMenuItem.Text = "Скачать";
             this.скачатьToolStripMenuItem.Click += new System.EventHandler(this.скачатьToolStripMenuItem_Click);
+            // 
+            // избранныеМодыToolStripMenuItem
+            // 
+            this.избранныеМодыToolStripMenuItem.Name = "избранныеМодыToolStripMenuItem";
+            this.избранныеМодыToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.избранныеМодыToolStripMenuItem.Text = "Избранные моды";
+            this.избранныеМодыToolStripMenuItem.Click += new System.EventHandler(this.избранныеМодыToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.CloseProgram);
             // 
@@ -181,14 +188,14 @@
             // оНасToolStripMenuItem
             // 
             this.оНасToolStripMenuItem.Name = "оНасToolStripMenuItem";
-            this.оНасToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.оНасToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.оНасToolStripMenuItem.Text = "О нас";
             this.оНасToolStripMenuItem.Click += new System.EventHandler(this.оНасToolStripMenuItem_Click);
             // 
             // оПрограммеToolStripMenuItem
             // 
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
@@ -354,13 +361,6 @@
             this.openFileDialog1.FileName = "mods.txt";
             this.openFileDialog1.Title = "Выберите файл с модами";
             // 
-            // избранныеМодыToolStripMenuItem
-            // 
-            this.избранныеМодыToolStripMenuItem.Name = "избранныеМодыToolStripMenuItem";
-            this.избранныеМодыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.избранныеМодыToolStripMenuItem.Text = "Избранные моды";
-            this.избранныеМодыToolStripMenuItem.Click += new System.EventHandler(this.избранныеМодыToolStripMenuItem_Click);
-            // 
             // MineModsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -369,6 +369,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MineModsForm";
             this.Text = "MineMods";

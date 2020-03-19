@@ -162,6 +162,16 @@ namespace MineMods.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap theminemods_logo_erased {
+            get {
+                object obj = ResourceManager.GetObject("theminemods_logo_erased", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap transport_mods {
             get {
                 object obj = ResourceManager.GetObject("transport_mods", resourceCulture);

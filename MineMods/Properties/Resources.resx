@@ -149,6 +149,9 @@
   <data name="minecraft_load2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\minecraft_load2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="theminemods_logo_erased" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\theminemods-logo_erased.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="transport_mods" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\transport-mods.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

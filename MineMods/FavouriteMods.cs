@@ -48,6 +48,7 @@ namespace MineMods
             modlabel.Text = mod.modName;
             modlabel.AccessibleName = n.ToString();
             modlabel.Click += new EventHandler(OpenFavModDescription);
+            modlabel.Cursor = Cursors.Hand;
             Controls.Add(modlabel);
         }
 

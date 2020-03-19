@@ -119,7 +119,7 @@ namespace MineMods
                         {
                             if (mods[n].categories[i] == category)
                             {
-                                AddMod(mods[n], n, y);
+                                mods[n] = AddMod(mods[n], n, y);
                                 y++;
                             }
                         }
@@ -127,7 +127,7 @@ namespace MineMods
                 }
                 else
                 {
-                    AddMod(mods[n], n, y);
+                    mods[n] = AddMod(mods[n], n, y);
                     y++;
                 }
 
@@ -165,7 +165,7 @@ namespace MineMods
             infoWindow.Show();
         }
 
-        private void AddMod(Mod mod)
+        private Mod AddMod(Mod mod)
         {
             Label label1 = new Label();
             label1.AutoSize = true;
@@ -174,15 +174,17 @@ namespace MineMods
             label1.Text = mod.modName;
             label1.Cursor = Cursors.Hand;
             label1.Click += new EventHandler(OpenModDescription);
+            mod.label1 = label1;
             Controls.Add(label1);
             modnumber++;
+            return mod;
         }
 
         private Mod AddMod(Mod mod, int k, int n)
         {
             Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(13, (35 * (n+1)) - 15);
+            label1.Location = new System.Drawing.Point(13, (35 * (n+1)) + 15);
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
             label1.Text = mod.modName;
             label1.Cursor = Cursors.Hand;
@@ -210,7 +212,8 @@ namespace MineMods
         {
             if (textBox1.Text != "Поиск")
             {
-                for (int i = 0; i < 500; i++)
+                int n = 0;
+                for (int i = 0; i < mods.Length; i++)
                 {
                     if (mods[i].label1 == null)
                     {
@@ -224,6 +227,12 @@ namespace MineMods
                     {
                         mods[i].label1.Visible = false;
                         mods[i].label1.Enabled = false;
+                    }
+
+                    if (mods[i].label1.Visible)
+                    {
+                        mods[i].label1.Location = new System.Drawing.Point(13, (35 * (n+1)) + 15);
+                        n++;
                     }
                 }
             }

@@ -170,5 +170,8 @@
   <ItemGroup>
     <None Include="Resources\minecraft_load2.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\theminemods-logo_erased.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModInfo));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,10 +46,10 @@
             this.скачатьВОбычномФорматеjarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьВБраузереcurseforgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьВБраузереСтраницуЗагрузкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.дополнительноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьВИзбранноеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -183,14 +184,6 @@
             this.открытьВБраузереСтраницуЗагрузкиToolStripMenuItem.Size = new System.Drawing.Size(287, 22);
             this.открытьВБраузереСтраницуЗагрузкиToolStripMenuItem.Text = "Открыть в браузере страницу загрузки";
             // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.Title = "Сохранить";
-            // 
-            // folderBrowserDialog1
-            // 
-            this.folderBrowserDialog1.Description = "Сохранить";
-            // 
             // дополнительноToolStripMenuItem
             // 
             this.дополнительноToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -206,6 +199,14 @@
             this.добавитьВИзбранноеToolStripMenuItem.Text = "Добавить в избранное";
             this.добавитьВИзбранноеToolStripMenuItem.Click += new System.EventHandler(this.добавитьВИзбранноеToolStripMenuItem_Click);
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Title = "Сохранить";
+            // 
+            // folderBrowserDialog1
+            // 
+            this.folderBrowserDialog1.Description = "Сохранить";
+            // 
             // ModInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,6 +215,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ModInfo";
             this.Text = "Мод";
