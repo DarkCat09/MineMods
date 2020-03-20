@@ -28,3 +28,4 @@ C:\Users\Acer\VisualStudio\source\repos\MineMods\MineMods\obj\Debug\MineMods.pdb
 C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.AdminForm.resources
 C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.FavouriteMods.resources
 C:\Users\Acer\VisualStudio\source\repos\MineMods\MineMods\obj\Debug\MineMods.FavouriteMods.resources
+C:\Users\Acer\VisualStudio\source\repos\MineMods\MineMods\obj\Debug\MineMods.csproj.CoreCompileInputs.cache

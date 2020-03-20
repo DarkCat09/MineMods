@@ -48,6 +48,7 @@
             this.открытьВБраузереСтраницуЗагрузкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.дополнительноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьВИзбранноеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.закрытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -59,6 +60,7 @@
             // 
             this.pictureBox1.ContextMenuStrip = this.contextMenuStrip1;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::MineMods.Properties.Resources.theminemods_picturenotfound_erased;
             this.pictureBox1.Location = new System.Drawing.Point(0, 24);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(425, 202);
@@ -121,6 +123,7 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(425, 218);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "Здрасьте! \r\nДля данной модификации не найден файл описания :(";
             // 
             // menuStrip1
             // 
@@ -187,7 +190,8 @@
             // дополнительноToolStripMenuItem
             // 
             this.дополнительноToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьВИзбранноеToolStripMenuItem});
+            this.добавитьВИзбранноеToolStripMenuItem,
+            this.закрытьToolStripMenuItem});
             this.дополнительноToolStripMenuItem.Name = "дополнительноToolStripMenuItem";
             this.дополнительноToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
             this.дополнительноToolStripMenuItem.Text = "Дополнительно";
@@ -198,6 +202,13 @@
             this.добавитьВИзбранноеToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.добавитьВИзбранноеToolStripMenuItem.Text = "Добавить в избранное";
             this.добавитьВИзбранноеToolStripMenuItem.Click += new System.EventHandler(this.добавитьВИзбранноеToolStripMenuItem_Click);
+            // 
+            // закрытьToolStripMenuItem
+            // 
+            this.закрытьToolStripMenuItem.Name = "закрытьToolStripMenuItem";
+            this.закрытьToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.закрытьToolStripMenuItem.Text = "Закрыть";
+            this.закрытьToolStripMenuItem.Click += new System.EventHandler(this.закрытьToolStripMenuItem_Click);
             // 
             // saveFileDialog1
             // 
@@ -250,5 +261,6 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ToolStripMenuItem дополнительноToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem добавитьВИзбранноеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem закрытьToolStripMenuItem;
     }
 }

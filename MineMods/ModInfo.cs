@@ -9,9 +9,9 @@ namespace MineMods
     public partial class ModInfo : Form
     {
         string[] modDescription;
-        Mods.Mod receivedMod;
+        Mod receivedMod;
 
-        public ModInfo(Mods.Mod mod)
+        public ModInfo(Mod mod)
         {
             InitializeComponent();
 
@@ -116,12 +116,8 @@ namespace MineMods
         {
             InitializeComponent();
 
-            ModInfo mf = new ModInfo(new Mods.Mod()
-            {
-                modName = mod,
-                categories = new string[1] { "" },
-                dlLink = null
-            });
+            ModInfo mf = new ModInfo(Mod.Create(mod));
+            mf.Show();
         }
 
         private void DownloadMod(object sender, EventArgs e)
@@ -224,6 +220,11 @@ namespace MineMods
         private void добавитьВИзбранноеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FavouriteMods.favmods.Add(receivedMod);
+        }
+
+        private void закрытьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

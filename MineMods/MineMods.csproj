@@ -78,6 +78,7 @@
     <Compile Include="MineModsForm.Designer.cs">
       <DependentUpon>MineModsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mod.cs" />
     <Compile Include="ModInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +173,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\theminemods-logo_erased.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\theminemods-picturenotfound_erased.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\theminemods-logo_erased.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

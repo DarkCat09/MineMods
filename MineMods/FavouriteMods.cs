@@ -10,7 +10,7 @@ namespace MineMods
     {
         string modsDirectory = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)) + 
                                "\\Users\\" + Environment.UserName + "\\AppData\\Roaming\\.minecraft\\mods";
-        public static List<Mods.Mod> favmods = new List<Mods.Mod>();
+        public static List<Mod> favmods = new List<Mod>();
 
         public FavouriteMods()
         {
@@ -19,7 +19,7 @@ namespace MineMods
             textBox1.Text = modsDirectory;
 
             int i = 0;
-            foreach (Mods.Mod m in favmods)
+            foreach (Mod m in favmods)
             {
                 AddFavMod(m, i);
                 i++;
@@ -38,7 +38,7 @@ namespace MineMods
             }
         }
 
-        private void AddFavMod(Mods.Mod mod, int n)
+        private void AddFavMod(Mod mod, int n)
         {
             Label modlabel = new Label();
             modlabel.AutoSize = true;
@@ -63,7 +63,7 @@ namespace MineMods
             }
         }
 
-        public void DownloadModFile(Mods.Mod m)
+        public void DownloadModFile(Mod m)
         {
             string modFileName = m.modName + ".jar";
             WebClient c = new WebClient();
@@ -99,7 +99,7 @@ namespace MineMods
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach (Mods.Mod m in favmods)
+            foreach (Mod m in favmods)
             {
                 DownloadModFile(m);
             }
@@ -107,7 +107,7 @@ namespace MineMods
 
         private void button2_Click(object sender, EventArgs e)
         {
-            foreach (Mods.Mod m in favmods)
+            foreach (Mod m in favmods)
             {
                 string modFileName = m.modName + ".jar";
                 FileInfo finf = null;

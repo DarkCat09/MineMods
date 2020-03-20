@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace MineMods
@@ -11,15 +12,7 @@ namespace MineMods
         /// </summary>
         int modnumber = 1;
 
-        public struct Mod
-        {
-            public string modName;
-            public string[] categories;
-            public Uri dlLink;
-            public Label label1;
-        }
-
-        Mod[] mods = new Mod[500];
+        List<Mod> mods = new List<Mod>();
 
         public Mods(string category)
         {
@@ -36,20 +29,23 @@ namespace MineMods
             int y = 0;
             while (line != null)
             {
+                Mod readMod = new Mod();
                 if (line.Split(new char[] { ';' }).Length >= 1)
                 {
-                    mods[n].modName = line.Split(new char[] { ';' })[0];
-                    mods[n].categories = (line.Split(new char[] { ';' })[1]).Split(new char[] { ',' });
+                    readMod.modName = line.Split(new char[] { ';' })[0];
+                    readMod.categories = (line.Split(new char[] { ';' })[1]).Split(new char[] { ',' });
                 }
 
                 if (line.Split(new char[] { ';' }).Length >= 3)
                 {
-                    mods[n].dlLink = new Uri(line.Split(new char[] { ';' })[2]);
+                    readMod.dlLink = new Uri(line.Split(new char[] { ';' })[2]);
                 }
                 else
                 {
-                    mods[n].dlLink = null;
+                    readMod.dlLink = null;
                 }
+
+                mods.Add(readMod);
 
                 if (category != "Все моды")
                 {
@@ -131,7 +127,7 @@ namespace MineMods
                     y++;
                 }
 
-                if (n <= mods.Length)
+                if (n <= mods.Count)
                 {
                     n++;
                 }
@@ -169,7 +165,7 @@ namespace MineMods
         {
             Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(13, 35 * modnumber - 15);
+            label1.Location = new System.Drawing.Point(13, 35 * modnumber + 15);
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
             label1.Text = mod.modName;
             label1.Cursor = Cursors.Hand;
@@ -197,15 +193,28 @@ namespace MineMods
 
         private void AddMod(string modName)
         {
-            Label label1 = new Label();
+            //1st variant
+            /*Label label1 = new Label();
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(13, 35 * modnumber - 15);
+            label1.Location = new System.Drawing.Point(13, 35 * modnumber + 15);
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
             label1.Text = modName;
             label1.Cursor = Cursors.Hand;
             label1.Click += new EventHandler(OpenModDescription);
             Controls.Add(label1);
-            modnumber++;
+            modnumber++;*/
+
+            //2nd variant
+            /*AddMod(new Mod()
+            {
+                modName = modName,
+                categories = new string[1] { "" },
+                dlLink = null,
+                label1 = null
+            });*/
+
+            //3rd variant
+            AddMod(MineMods.Mod.Create(modName));
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -213,7 +222,7 @@ namespace MineMods
             if (textBox1.Text != "Поиск")
             {
                 int n = 0;
-                for (int i = 0; i < mods.Length; i++)
+                for (int i = 0; i < mods.Count; i++)
                 {
                     if (mods[i].label1 == null)
                     {
@@ -235,6 +244,15 @@ namespace MineMods
                         n++;
                     }
                 }
+            }
+        }
+
+        private void CheckEnterKey(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                button1_Click(null, null);
+                e.Handled = true;
             }
         }
     }

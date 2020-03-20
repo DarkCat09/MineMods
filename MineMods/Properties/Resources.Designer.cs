@@ -170,6 +170,26 @@ namespace MineMods.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon theminemods_logo_erased1 {
+            get {
+                object obj = ResourceManager.GetObject("theminemods_logo_erased1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap theminemods_picturenotfound_erased {
+            get {
+                object obj = ResourceManager.GetObject("theminemods_picturenotfound_erased", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap transport_mods {
