@@ -41,8 +41,8 @@ namespace MineMods
         private void button1_Click(object sender, EventArgs e)
         {
             string promptPasswdFromFile = "";
-            //string correctPasswdFromFile = "";
-            string correctHashFromFile = "";
+            string correctPasswdFromFile = "";
+            //string correctHashFromFile = "";
 
             byte[] tmpSource;  //source passwd that writed in passwdbox
             byte[] tmpHash;    //hash of passwd that writed in passwdbox
@@ -50,29 +50,30 @@ namespace MineMods
 
             if (File.Exists(".admin_passwd.conf"))
             {
-                StreamReader s = new StreamReader(".admin_passwd.conf", UnicodeEncoding.Unicode);
-                //correctPasswdFromFile = s.ReadLine();
-                correctHashFromFile = s.ReadLine();
+                StreamReader s = new StreamReader(".admin_passwd.conf", ASCIIEncoding.ASCII);
+                correctPasswdFromFile = s.ReadLine();
+                //correctHashFromFile = s.ReadLine();
                 promptPasswdFromFile = s.ReadLine();
 
                 promptPasswd = (promptPasswdFromFile != "False");
 
                 s.Close();
 
-                //correctHash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(correctPasswdFromFile));
-                correctHash = UnicodeEncoding.Unicode.GetBytes(correctHashFromFile);
+                correctHash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(correctPasswdFromFile));
+                //correctHash = UnicodeEncoding.Unicode.GetBytes(correctHashFromFile);
 
                 //for debug
-                _ = MessageBox.Show(UnicodeEncoding.Unicode.GetString(correctHash));
+                _ = MessageBox.Show(correctPasswdFromFile);
+                _ = MessageBox.Show(ASCIIEncoding.ASCII.GetString(correctHash));
             }
             else
             {
                 DateTime today = DateTime.Today;
                 string defpasswd = "$changeme" + today.ToString("ddMMyyyy");
-                byte[] defpasswdhash = new MD5CryptoServiceProvider().ComputeHash(UnicodeEncoding.Unicode.GetBytes(defpasswd));
+                byte[] defpasswdhash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(defpasswd));
 
-                File.WriteAllText(".admin_passwd.conf", UnicodeEncoding.Unicode.GetString(defpasswdhash) + "\n" + promptPasswd.ToString(), Encoding.Unicode);
-                correctHash = new MD5CryptoServiceProvider().ComputeHash(UnicodeEncoding.Unicode.GetBytes(defpasswd));
+                File.WriteAllText(".admin_passwd.conf", defpasswd + "\n" + promptPasswd.ToString(), ASCIIEncoding.ASCII);
+                correctHash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(defpasswd));
                 promptPasswd = true;
             }
 
@@ -91,11 +92,8 @@ namespace MineMods
             }
             else
             {
-                tmpSource = UnicodeEncoding.Unicode.GetBytes(textBox1.Text);
+                tmpSource = ASCIIEncoding.ASCII.GetBytes(textBox1.Text);
                 tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
-
-                //for debug
-                _ = MessageBox.Show(UnicodeEncoding.Unicode.GetString(correctHash));
 
                 //comparing hash
                 bool bEqual = false;
@@ -148,8 +146,7 @@ namespace MineMods
             if (textBox4.Text != "")
             {
                 File.WriteAllText(".admin_passwd.conf",
-                                  UnicodeEncoding.Unicode.GetString(new MD5CryptoServiceProvider().ComputeHash(UnicodeEncoding.Unicode.GetBytes(textBox4.Text))) + 
-                                  "\n" + promptPasswd.ToString());
+                                  textBox4.Text + "\n" + promptPasswd.ToString());
             }
             else
             {
@@ -165,22 +162,22 @@ namespace MineMods
         {
             promptPasswd = true;
 
-            StreamReader s = new StreamReader(".admin_passwd.conf", UnicodeEncoding.Unicode);
+            StreamReader s = new StreamReader(".admin_passwd.conf", ASCIIEncoding.ASCII);
             string passwdFromFile = s.ReadLine();
             s.Close();
 
-            File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString(), UnicodeEncoding.Unicode);
+            File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString(), ASCIIEncoding.ASCII);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             promptPasswd = false;
 
-            StreamReader s = new StreamReader(".admin_passwd.conf", UnicodeEncoding.Unicode);
+            StreamReader s = new StreamReader(".admin_passwd.conf", ASCIIEncoding.ASCII);
             string passwdFromFile = s.ReadLine();
             s.Close();
 
-            File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString(), UnicodeEncoding.Unicode);
+            File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString(), ASCIIEncoding.ASCII);
         }
 
         private void button9_Click(object sender, EventArgs e)

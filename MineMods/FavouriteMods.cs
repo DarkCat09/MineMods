@@ -146,5 +146,14 @@ namespace MineMods
 
             progressBar1.Value = 0;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            favmods.Clear();
+
+            _ = MessageBox.Show("Список избранных модов очищен.", "Информация",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Close();
+        }
     }
 }
