@@ -58,6 +58,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.языкToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.russianРусскийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishАнглийскийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -117,6 +120,7 @@
             // 
             this.параметрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.шрифтToolStripMenuItem,
+            this.языкToolStripMenuItem,
             this.файлСМодамиToolStripMenuItem,
             this.сообщитьОбОшибкеToolStripMenuItem});
             this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
@@ -361,6 +365,29 @@
             this.openFileDialog1.FileName = "mods.txt";
             this.openFileDialog1.Title = "Выберите файл с модами";
             // 
+            // языкToolStripMenuItem
+            // 
+            this.языкToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.russianРусскийToolStripMenuItem,
+            this.englishАнглийскийToolStripMenuItem});
+            this.языкToolStripMenuItem.Name = "языкToolStripMenuItem";
+            this.языкToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.языкToolStripMenuItem.Text = "Язык";
+            // 
+            // russianРусскийToolStripMenuItem
+            // 
+            this.russianРусскийToolStripMenuItem.Name = "russianРусскийToolStripMenuItem";
+            this.russianРусскийToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.russianРусскийToolStripMenuItem.Text = "Russian (Русский)";
+            this.russianРусскийToolStripMenuItem.Click += new System.EventHandler(this.russianРусскийToolStripMenuItem_Click);
+            // 
+            // englishАнглийскийToolStripMenuItem
+            // 
+            this.englishАнглийскийToolStripMenuItem.Name = "englishАнглийскийToolStripMenuItem";
+            this.englishАнглийскийToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.englishАнглийскийToolStripMenuItem.Text = "English (Английский)";
+            this.englishАнглийскийToolStripMenuItem.Click += new System.EventHandler(this.englishАнглийскийToolStripMenuItem_Click);
+            // 
             // MineModsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,6 +439,9 @@
         private System.Windows.Forms.ToolStripMenuItem крупный12ptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem огромный15ptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem избранныеМодыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem языкToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem russianРусскийToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem englishАнглийскийToolStripMenuItem;
     }
 }
 

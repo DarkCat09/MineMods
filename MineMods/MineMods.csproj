@@ -72,6 +72,7 @@
     <Compile Include="FavouriteMods.Designer.cs">
       <DependentUpon>FavouriteMods.cs</DependentUpon>
     </Compile>
+    <Compile Include="Languages.cs" />
     <Compile Include="MineModsForm.cs">
       <SubType>Form</SubType>
     </Compile>

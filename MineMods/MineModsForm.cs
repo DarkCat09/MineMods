@@ -8,6 +8,7 @@ namespace MineMods
         public MineModsForm()
         {
             InitializeComponent();
+            russianРусскийToolStripMenuItem_Click(null, null);
         }
 
         private void CloseProgram(object sender, EventArgs e)
@@ -129,6 +130,74 @@ namespace MineMods
         {
             FavouriteMods favform = new FavouriteMods();
             favform.Show();
+        }
+
+        private void russianРусскийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            модToolStripMenuItem.Text = Languages.Rus["Мод"];
+            обновитьToolStripMenuItem.Text = Languages.Rus["Обновить"];
+            скачатьToolStripMenuItem.Text = Languages.Rus["Скачать"];
+            избранныеМодыToolStripMenuItem.Text = Languages.Rus["Избранные моды"];
+            выходToolStripMenuItem.Text = Languages.Rus["Выход"];
+
+            параметрыToolStripMenuItem.Text = Languages.Rus["Параметры"];
+            шрифтToolStripMenuItem.Text = Languages.Rus["Шрифт"];
+
+            мелкий5ptToolStripMenuItem.Text = Languages.Rus["Мелкий (5pt)"];
+            обычный9ptToolStripMenuItem.Text = Languages.Rus["Обычный (9pt)"];
+            крупный12ptToolStripMenuItem.Text = Languages.Rus["Крупный (12pt)"];
+            огромный15ptToolStripMenuItem.Text = Languages.Rus["Огромный (15pt)"];
+
+            языкToolStripMenuItem.Text = Languages.Rus["Язык"];
+            файлСМодамиToolStripMenuItem.Text = Languages.Rus["Файл с модами"];
+            сообщитьОбОшибкеToolStripMenuItem.Text = Languages.Rus["Сообщить об ошибке"];
+
+            справкаToolStripMenuItem.Text = Languages.Rus["Справка"];
+            оНасToolStripMenuItem.Text = Languages.Rus["О нас"];
+            оПрограммеToolStripMenuItem.Text = Languages.Rus["О программе"];
+
+            button1.Text = Languages.Rus["Клиент"];
+            button2.Text = Languages.Rus["Сервер,мир"];
+            button3.Text = Languages.Rus["Еда"];
+            button4.Text = Languages.Rus["Мебель"];
+            button5.Text = Languages.Rus["Транспорт"];
+            button6.Text = Languages.Rus["Электроника и оружие"];
+            button7.Text = Languages.Rus["Графика"];
+            button8.Text = Languages.Rus["Блоки и другое"];
+        }
+
+        private void englishАнглийскийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            модToolStripMenuItem.Text = Languages.Eng["Мод"];
+            обновитьToolStripMenuItem.Text = Languages.Eng["Обновить"];
+            скачатьToolStripMenuItem.Text = Languages.Eng["Скачать"];
+            избранныеМодыToolStripMenuItem.Text = Languages.Eng["Избранные моды"];
+            выходToolStripMenuItem.Text = Languages.Eng["Выход"];
+
+            параметрыToolStripMenuItem.Text = Languages.Eng["Параметры"];
+            шрифтToolStripMenuItem.Text = Languages.Eng["Шрифт"];
+
+            мелкий5ptToolStripMenuItem.Text = Languages.Eng["Мелкий (5pt)"];
+            обычный9ptToolStripMenuItem.Text = Languages.Eng["Обычный (9pt)"];
+            крупный12ptToolStripMenuItem.Text = Languages.Eng["Крупный (12pt)"];
+            огромный15ptToolStripMenuItem.Text = Languages.Eng["Огромный (15pt)"];
+
+            языкToolStripMenuItem.Text = Languages.Eng["Язык"];
+            файлСМодамиToolStripMenuItem.Text = Languages.Eng["Файл с модами"];
+            сообщитьОбОшибкеToolStripMenuItem.Text = Languages.Eng["Сообщить об ошибке"];
+
+            справкаToolStripMenuItem.Text = Languages.Eng["Справка"];
+            оНасToolStripMenuItem.Text = Languages.Eng["О нас"];
+            оПрограммеToolStripMenuItem.Text = Languages.Eng["О программе"];
+
+            button1.Text = Languages.Eng["Клиент"];
+            button2.Text = Languages.Eng["Сервер,мир"];
+            button3.Text = Languages.Eng["Еда"];
+            button4.Text = Languages.Eng["Мебель"];
+            button5.Text = Languages.Eng["Транспорт"];
+            button6.Text = Languages.Eng["Электроника и оружие"];
+            button7.Text = Languages.Eng["Графика"];
+            button8.Text = Languages.Eng["Блоки и другое"];
         }
     }
 }
