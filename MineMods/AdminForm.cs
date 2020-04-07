@@ -61,10 +61,6 @@ namespace MineMods
 
                 correctHash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(correctPasswdFromFile));
                 //correctHash = UnicodeEncoding.Unicode.GetBytes(correctHashFromFile);
-
-                //for debug
-                _ = MessageBox.Show(correctPasswdFromFile);
-                _ = MessageBox.Show(ASCIIEncoding.ASCII.GetString(correctHash));
             }
             else
             {
@@ -303,6 +299,67 @@ namespace MineMods
         private void скрытьПарольToolStripMenuItem_Click(object sender, EventArgs e)
         {
             textBox1.UseSystemPasswordChar = true;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            string strToWrite = "";
+
+            #region checking options - is empty?
+            if (textBox7.Text == "")
+            {
+                _ = MessageBox.Show("Введите название мода!", "Ошибка",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (comboBox1.Text == "" && comboBox2.Text == "")
+            {
+                _ = MessageBox.Show("Выберите категорию мода!", "Ошибка",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                strToWrite = textBox7.Text + ";" + comboBox1.Text + "," + comboBox2.Text;
+            }
+
+            if (textBox8.Text == "")
+            {
+                string warnboxres = MessageBox.Show("Вы не указали ссылку для скачивания этой модификации.\nПродолжить?",
+                                                    "Предупреждение",
+                                                    MessageBoxButtons.YesNo,
+                                                    MessageBoxIcon.Warning).ToString();
+                if (warnboxres == "No")
+                {
+                    return;
+                }
+            }
+            else
+            {
+                strToWrite += ";" + textBox8.Text;
+            }
+            #endregion
+
+            if (comboBox1.Text != "" || comboBox2.Text != "")
+            {
+                File.AppendAllText("mods.txt", strToWrite + "\r\n");
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            _ = Process.Start(textBox8.Text);
+        }
+
+        private void показатьПарольToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            textBox4.UseSystemPasswordChar = false;
+        }
+
+        private void скрытьПарольToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            textBox4.UseSystemPasswordChar = true;
         }
     }
 }

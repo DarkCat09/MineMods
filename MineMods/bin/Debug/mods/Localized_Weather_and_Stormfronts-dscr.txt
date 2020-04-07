@@ -1,1 +1,23 @@
-Погода.
+I recommend turning on "Force threaded chunk rendering" in "Client Settings" in Minecraft Forge Mod Options Config.
+My mod keeps block updates to a minimum but this setting still helps a lot.
+
+- Localized weather! See rain and nastier storms coming in from a distance
+- Replaces vanilla clouds with my own particle based ones that are always shifting around
+- Replaces rain and snowfall with a particle based one that blows in the wind
+- Rain clouds build up moisture from water and moist biomes
+- Stormfront system uses biome temperature differences to create nasty storms!
+- Improved look of storms from old weather mod
+- Forecast block that projects the active storms on a grid
+- Machine block that can create various types of storms at that location
+- Deflector block that can destroy storms within a 150 block radius to protect your creations
+- Wind Vane to show the direction of the wind (Model made by Razz of DecoCraft)
+- Anemometer to show the speed of the wind
+- User friendly GUI to enable/disable the most common features, comes with advanced options
+- Scenes enhanced with falling leaf particles and waterfall effects
+- Trees make blowing in wind sound, waterfalls make strong water sounds
+- Can enhance snowfall with more gradual smooth buildup (default off, memory hungry!)
+- Sandstorms! Spawn in deserts, builds up layered sand, causes intense visuals via fog and particle action
+
+Requires CoroUtil (and curse should auto download it)
+
+You may use the mod in any modpack you like.

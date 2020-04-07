@@ -10,11 +10,6 @@ namespace MineMods
         public Uri dlLink;
         public Label label1;
 
-        public Mod()
-        {
-            Create("");
-        }
-
         public static Mod Create(string name)
         {
             Mod m = new Mod()

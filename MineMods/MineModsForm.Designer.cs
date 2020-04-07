@@ -41,6 +41,9 @@
             this.обычный9ptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.крупный12ptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.огромный15ptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.языкToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.russianРусскийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishАнглийскийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.файлСМодамиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сообщитьОбОшибкеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,9 +61,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.языкToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.russianРусскийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.englishАнглийскийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -165,6 +165,29 @@
             this.огромный15ptToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.огромный15ptToolStripMenuItem.Text = "Огромный (15pt)";
             this.огромный15ptToolStripMenuItem.Click += new System.EventHandler(this.огромный15ptToolStripMenuItem_Click);
+            // 
+            // языкToolStripMenuItem
+            // 
+            this.языкToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.russianРусскийToolStripMenuItem,
+            this.englishАнглийскийToolStripMenuItem});
+            this.языкToolStripMenuItem.Name = "языкToolStripMenuItem";
+            this.языкToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.языкToolStripMenuItem.Text = "Язык (Language)";
+            // 
+            // russianРусскийToolStripMenuItem
+            // 
+            this.russianРусскийToolStripMenuItem.Name = "russianРусскийToolStripMenuItem";
+            this.russianРусскийToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.russianРусскийToolStripMenuItem.Text = "Russian (Русский)";
+            this.russianРусскийToolStripMenuItem.Click += new System.EventHandler(this.russianРусскийToolStripMenuItem_Click);
+            // 
+            // englishАнглийскийToolStripMenuItem
+            // 
+            this.englishАнглийскийToolStripMenuItem.Name = "englishАнглийскийToolStripMenuItem";
+            this.englishАнглийскийToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.englishАнглийскийToolStripMenuItem.Text = "English (Английский)";
+            this.englishАнглийскийToolStripMenuItem.Click += new System.EventHandler(this.englishАнглийскийToolStripMenuItem_Click);
             // 
             // файлСМодамиToolStripMenuItem
             // 
@@ -364,29 +387,6 @@
             this.openFileDialog1.DefaultExt = "txt";
             this.openFileDialog1.FileName = "mods.txt";
             this.openFileDialog1.Title = "Выберите файл с модами";
-            // 
-            // языкToolStripMenuItem
-            // 
-            this.языкToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.russianРусскийToolStripMenuItem,
-            this.englishАнглийскийToolStripMenuItem});
-            this.языкToolStripMenuItem.Name = "языкToolStripMenuItem";
-            this.языкToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.языкToolStripMenuItem.Text = "Язык";
-            // 
-            // russianРусскийToolStripMenuItem
-            // 
-            this.russianРусскийToolStripMenuItem.Name = "russianРусскийToolStripMenuItem";
-            this.russianРусскийToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.russianРусскийToolStripMenuItem.Text = "Russian (Русский)";
-            this.russianРусскийToolStripMenuItem.Click += new System.EventHandler(this.russianРусскийToolStripMenuItem_Click);
-            // 
-            // englishАнглийскийToolStripMenuItem
-            // 
-            this.englishАнглийскийToolStripMenuItem.Name = "englishАнглийскийToolStripMenuItem";
-            this.englishАнглийскийToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.englishАнглийскийToolStripMenuItem.Text = "English (Английский)";
-            this.englishАнглийскийToolStripMenuItem.Click += new System.EventHandler(this.englishАнглийскийToolStripMenuItem_Click);
             // 
             // MineModsForm
             // 
