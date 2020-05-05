@@ -59,6 +59,20 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.button11 = new System.Windows.Forms.Button();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -67,6 +81,9 @@
             this.button6 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.показатьПарольToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.скрытьПарольToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -78,29 +95,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.button11 = new System.Windows.Forms.Button();
-            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.скрытьПарольToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.показатьПарольToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.contextMenuStrip3.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabPage3.SuspendLayout();
-            this.contextMenuStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -398,6 +405,175 @@
             this.textBox2.Size = new System.Drawing.Size(103, 20);
             this.textBox2.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.pictureBox2);
+            this.tabPage3.Controls.Add(this.label15);
+            this.tabPage3.Controls.Add(this.textBox9);
+            this.tabPage3.Controls.Add(this.label14);
+            this.tabPage3.Controls.Add(this.button11);
+            this.tabPage3.Controls.Add(this.textBox8);
+            this.tabPage3.Controls.Add(this.label13);
+            this.tabPage3.Controls.Add(this.comboBox2);
+            this.tabPage3.Controls.Add(this.comboBox1);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.button10);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.textBox7);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(663, 258);
+            this.tabPage3.TabIndex = 4;
+            this.tabPage3.Text = "Добавить мод";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.Image = global::MineMods.Properties.Resources.select;
+            this.pictureBox2.Location = new System.Drawing.Point(280, 165);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(147, 49);
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label15.Location = new System.Drawing.Point(277, 148);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(122, 13);
+            this.label15.TabIndex = 11;
+            this.label15.Text = "Картинка для мода";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(280, 23);
+            this.textBox9.Multiline = true;
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(297, 105);
+            this.textBox9.TabIndex = 10;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(277, 7);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(150, 13);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "Описание модификации";
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(9, 191);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(244, 23);
+            this.button11.TabIndex = 8;
+            this.button11.Text = "Перейти";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(10, 165);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(242, 20);
+            this.textBox8.TabIndex = 7;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(7, 148);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(245, 13);
+            this.label13.TabIndex = 6;
+            this.label13.Text = "Ссылка на скачивание (необязательно)";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Клиент",
+            "Сервер",
+            "Мир",
+            "Еда",
+            "Мебель",
+            "Транспорт",
+            "Электроника",
+            "Оружие",
+            "Графика",
+            "Блоки",
+            "Другое",
+            "Инструменты"});
+            this.comboBox2.Location = new System.Drawing.Point(10, 107);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(242, 21);
+            this.comboBox2.TabIndex = 5;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Клиент",
+            "Сервер",
+            "Мир",
+            "Еда",
+            "Мебель",
+            "Транспорт",
+            "Электроника",
+            "Оружие",
+            "Графика",
+            "Блоки",
+            "Другое",
+            "Инструменты"});
+            this.comboBox1.Location = new System.Drawing.Point(10, 80);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(242, 21);
+            this.comboBox1.TabIndex = 4;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(7, 63);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(69, 13);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Категория";
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(572, 229);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(85, 23);
+            this.button10.TabIndex = 2;
+            this.button10.Text = "OK";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.Location = new System.Drawing.Point(7, 7);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(150, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Название модификации";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(10, 23);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(242, 20);
+            this.textBox7.TabIndex = 0;
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.button8);
@@ -481,6 +657,28 @@
             this.textBox4.Size = new System.Drawing.Size(100, 20);
             this.textBox4.TabIndex = 1;
             this.textBox4.UseSystemPasswordChar = true;
+            // 
+            // contextMenuStrip3
+            // 
+            this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.показатьПарольToolStripMenuItem1,
+            this.скрытьПарольToolStripMenuItem1});
+            this.contextMenuStrip3.Name = "contextMenuStrip3";
+            this.contextMenuStrip3.Size = new System.Drawing.Size(168, 48);
+            // 
+            // показатьПарольToolStripMenuItem1
+            // 
+            this.показатьПарольToolStripMenuItem1.Name = "показатьПарольToolStripMenuItem1";
+            this.показатьПарольToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
+            this.показатьПарольToolStripMenuItem1.Text = "Показать пароль";
+            this.показатьПарольToolStripMenuItem1.Click += new System.EventHandler(this.показатьПарольToolStripMenuItem1_Click);
+            // 
+            // скрытьПарольToolStripMenuItem1
+            // 
+            this.скрытьПарольToolStripMenuItem1.Name = "скрытьПарольToolStripMenuItem1";
+            this.скрытьПарольToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
+            this.скрытьПарольToolStripMenuItem1.Text = "Скрыть пароль";
+            this.скрытьПарольToolStripMenuItem1.Click += new System.EventHandler(this.скрытьПарольToolStripMenuItem1_Click);
             // 
             // label5
             // 
@@ -585,153 +783,13 @@
             // 
             this.openFileDialog1.Title = "Выберите мод";
             // 
-            // tabPage3
+            // timer1
             // 
-            this.tabPage3.Controls.Add(this.button11);
-            this.tabPage3.Controls.Add(this.textBox8);
-            this.tabPage3.Controls.Add(this.label13);
-            this.tabPage3.Controls.Add(this.comboBox2);
-            this.tabPage3.Controls.Add(this.comboBox1);
-            this.tabPage3.Controls.Add(this.label12);
-            this.tabPage3.Controls.Add(this.button10);
-            this.tabPage3.Controls.Add(this.label11);
-            this.tabPage3.Controls.Add(this.textBox7);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(663, 258);
-            this.tabPage3.TabIndex = 4;
-            this.tabPage3.Text = "Добавить мод";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // textBox7
+            // openFileDialog2
             // 
-            this.textBox7.Location = new System.Drawing.Point(10, 23);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(147, 20);
-            this.textBox7.TabIndex = 0;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(7, 7);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(150, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Название модификации";
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(572, 229);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(85, 23);
-            this.button10.TabIndex = 2;
-            this.button10.Text = "OK";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(7, 63);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(69, 13);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "Категория";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Клиент",
-            "Сервер",
-            "Мир",
-            "Еда",
-            "Мебель",
-            "Транспорт",
-            "Электроника",
-            "Оружие",
-            "Графика",
-            "Блоки",
-            "Другое",
-            "Инструменты"});
-            this.comboBox1.Location = new System.Drawing.Point(10, 80);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(147, 21);
-            this.comboBox1.TabIndex = 4;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Клиент",
-            "Сервер",
-            "Мир",
-            "Еда",
-            "Мебель",
-            "Транспорт",
-            "Электроника",
-            "Оружие",
-            "Графика",
-            "Блоки",
-            "Другое",
-            "Инструменты"});
-            this.comboBox2.Location = new System.Drawing.Point(10, 107);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(147, 21);
-            this.comboBox2.TabIndex = 5;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(7, 148);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(245, 13);
-            this.label13.TabIndex = 6;
-            this.label13.Text = "Ссылка на скачивание (необязательно)";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(10, 165);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(242, 20);
-            this.textBox8.TabIndex = 7;
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(9, 191);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(244, 23);
-            this.button11.TabIndex = 8;
-            this.button11.Text = "Перейти";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // contextMenuStrip3
-            // 
-            this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.показатьПарольToolStripMenuItem1,
-            this.скрытьПарольToolStripMenuItem1});
-            this.contextMenuStrip3.Name = "contextMenuStrip3";
-            this.contextMenuStrip3.Size = new System.Drawing.Size(168, 48);
-            // 
-            // скрытьПарольToolStripMenuItem1
-            // 
-            this.скрытьПарольToolStripMenuItem1.Name = "скрытьПарольToolStripMenuItem1";
-            this.скрытьПарольToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
-            this.скрытьПарольToolStripMenuItem1.Text = "Скрыть пароль";
-            this.скрытьПарольToolStripMenuItem1.Click += new System.EventHandler(this.скрытьПарольToolStripMenuItem1_Click);
-            // 
-            // показатьПарольToolStripMenuItem1
-            // 
-            this.показатьПарольToolStripMenuItem1.Name = "показатьПарольToolStripMenuItem1";
-            this.показатьПарольToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
-            this.показатьПарольToolStripMenuItem1.Text = "Показать пароль";
-            this.показатьПарольToolStripMenuItem1.Click += new System.EventHandler(this.показатьПарольToolStripMenuItem1_Click);
+            this.openFileDialog2.Title = "Выбрать картинку для модификации";
             // 
             // AdminForm
             // 
@@ -752,14 +810,15 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.contextMenuStrip3.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.contextMenuStrip3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -828,5 +887,11 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
         private System.Windows.Forms.ToolStripMenuItem показатьПарольToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem скрытьПарольToolStripMenuItem1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }

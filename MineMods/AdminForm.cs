@@ -22,6 +22,11 @@ namespace MineMods
         string modsDirectory = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)) +
                                "Users\\" + Environment.UserName + "\\AppData\\Roaming\\.minecraft\\mods";
 
+        System.Drawing.Bitmap loadgif;
+        int timeLoadgifShown;
+
+        string modImagePath = "";
+
         public AdminForm()
         {
             InitializeComponent();
@@ -176,15 +181,32 @@ namespace MineMods
             File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString(), ASCIIEncoding.ASCII);
         }
 
+        private void EnableTimer(Timer t)
+        {
+            try
+            {
+                pictureBox1.Image = loadgif;
+                t.Enabled = true;
+                timeLoadgifShown = Environment.TickCount;
+            }
+            catch (Exception e)
+            {
+                _ = MessageBox.Show(e.ToString());
+            }
+        }
+
         private void button9_Click(object sender, EventArgs e)
         {
+            Random rand = new Random();
+            loadgif = loadgifs[rand.Next(3)];
+
             if (textBox5.Text != "")
             {
-                Random rand = new Random();
-                pictureBox1.Image = loadgifs[rand.Next(3)];
 
                 if (textBox5.Text == "start-console")
                 {
+                    EnableTimer(timer1);
+
                     if (textBox6.Text != "")
                         textBox6.Text += Environment.NewLine;
 
@@ -194,6 +216,8 @@ namespace MineMods
                 }
                 else if (textBox5.Text == "stop-console")
                 {
+                    EnableTimer(timer1);
+
                     if (textBox6.Text != "")
                         textBox6.Text += Environment.NewLine;
 
@@ -203,6 +227,8 @@ namespace MineMods
                 }
                 else if (console_started && textBox5.Text.StartsWith("echo"))
                 {
+                    EnableTimer(timer1);
+
                     if (textBox6.Text != "")
                         textBox6.Text += Environment.NewLine;
 
@@ -226,6 +252,8 @@ namespace MineMods
                 {
                     //_ = MessageBox.Show("Эта функция ещё не работает должным образом.");
 
+                    EnableTimer(timer1);
+                    
                     if (textBox6.Text != "")
                         textBox6.Text += Environment.NewLine;
 
@@ -285,9 +313,6 @@ namespace MineMods
                     textBox6.Text += "Command not found!";
                     textBox6.Text += Environment.NewLine + "First try command \"start-console\".";
                 }
-
-                //System.Threading.Thread.Sleep(1000);
-                pictureBox1.Image = null;
             }
         }
 
@@ -341,6 +366,15 @@ namespace MineMods
             }
             #endregion
 
+            #region saving description and picture
+            File.WriteAllLines("mods\\" + Vars.ParseModFileName(textBox7.Text) + "-dscr.txt", textBox9.Lines);
+            if (modImagePath != "") {
+                string[] imgpathSubstrs = modImagePath.Split('.');
+                File.Copy(modImagePath, "mods\\" + Vars.ParseModFileName(textBox7.Text) + "-icon." + 
+                    imgpathSubstrs[imgpathSubstrs.Length - 1]);
+            }
+            #endregion
+
             if (comboBox1.Text != "" || comboBox2.Text != "")
             {
                 File.AppendAllText("mods.txt", strToWrite + "\r\n");
@@ -360,6 +394,23 @@ namespace MineMods
         private void скрытьПарольToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             textBox4.UseSystemPasswordChar = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            while (Environment.TickCount - timeLoadgifShown < 1500)
+            {
+                //wait
+            }
+
+            pictureBox1.Image = null;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            openFileDialog2.ShowDialog();
+            modImagePath = openFileDialog2.FileName;
+            pictureBox2.Load(modImagePath);
         }
     }
 }

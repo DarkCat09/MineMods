@@ -58,3 +58,4 @@ Inventory Profiles;Инструменты
 (Survival) Island Generator;Инструменты,Мир,Другое
 JoinLastWorld;Инструменты
 Backups;Инструменты
+Techguns2;Оружие,Другое

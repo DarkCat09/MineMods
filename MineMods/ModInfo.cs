@@ -24,8 +24,8 @@ namespace MineMods
             #region description file
             try
             {
-                string str = "mods\\" + modName.Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "") +
-                            "-dscr.txt";
+                //string str = "mods\\" + modName.Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "") + "-dscr.txt";
+                string str = "mods\\" + Vars.ParseModFileName(modName) + "-dscr.txt";
                 modDescription = File.ReadAllLines(str);
             }
             catch (PathTooLongException)
@@ -78,7 +78,8 @@ namespace MineMods
             if (modDescription != null)
             {
                 textBox1.Lines = modDescription;
-                string str = "mods\\" + modName.Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "") + "-icon";
+                //string str = "mods\\" + modName.Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "") + "-icon";
+                string str = "mods\\" + Vars.ParseModFileName(modName) + "-icon";
 
                 try
                 {
@@ -92,13 +93,20 @@ namespace MineMods
                     }
                     catch (FileNotFoundException)
                     {
-                        _ = MessageBox.Show("Файл с картинкой не найден!\n\n" +
-                                            "Возможно, картинки для этого мода пока что нет.\n\n" +
-                                            "Если Вам нужна картинка, напишите разработчику письмо\n" +
-                                            "с темой кода проблемы:\n" +
-                                            "MINEMODS_PICTURENOTFOUND <название мода>",
-                                            "Ошибка", MessageBoxButtons.OK,
-                                            MessageBoxIcon.Warning);
+                        try
+                        {
+                            pictureBox1.Load(str + ".gif");
+                        }
+                        catch (FileNotFoundException)
+                        {
+                            _ = MessageBox.Show("Файл с картинкой не найден!\n\n" +
+                                                "Возможно, картинки для этого мода пока что нет.\n\n" +
+                                                "Если Вам нужна картинка, напишите разработчику письмо\n" +
+                                                "с темой кода проблемы:\n" +
+                                                "MINEMODS_PICTURENOTFOUND <название мода>",
+                                                "Ошибка", MessageBoxButtons.OK,
+                                                MessageBoxIcon.Warning);
+                        }
                     }
                 }
             }

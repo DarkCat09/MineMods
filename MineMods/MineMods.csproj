@@ -181,5 +181,8 @@
   <ItemGroup>
     <None Include="Resources\theminemods-logo_erased.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
