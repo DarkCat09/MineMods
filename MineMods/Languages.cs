@@ -5,6 +5,8 @@ namespace MineMods
 {
     public class Languages
     {
+        public static string lang = "Rus";
+
         public static Dictionary<string, string> Eng = new Dictionary<string, string>() {
             {"Клиент", "Clientside"},
             {"Сервер,мир", "Server,world"},

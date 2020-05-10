@@ -59,3 +59,4 @@ Inventory Profiles;Инструменты
 JoinLastWorld;Инструменты
 Backups;Инструменты
 Techguns2;Оружие,Другое
+Biomes O' Plenty;Мир,;https://www.curseforge.com/minecraft/mc-mods/biomes-o-plenty/download/2887034/file

@@ -7,6 +7,7 @@ namespace MineMods
     {
         public static Font MAINFONT = new Font("Verdana", 9);
         public static string modsFile = "mods.txt";
+        public static bool updateCache = true;
 
         public static string ParseModFileName(string modName)
         {

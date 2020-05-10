@@ -94,6 +94,7 @@
             this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
             this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.обновитьToolStripMenuItem.Text = "Обновить";
+            this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click);
             // 
             // скачатьToolStripMenuItem
             // 
@@ -400,6 +401,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MineModsForm";
             this.Text = "MineMods";
+            this.Load += new System.EventHandler(this.MineModsForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);

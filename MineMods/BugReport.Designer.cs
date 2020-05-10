@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BugReport));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,6 +41,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // textBox1
@@ -83,6 +86,8 @@
             this.comboBox1.Items.AddRange(new object[] {
             "MINEMODS_TOOMANYMODS",
             "MINEMODS_FILENOTFOUNDEXCEPTION",
+            "MINEMODS_DIRNOTFOUNDEXCEPTION",
+            "MINEMODS_FILEONSERVERNOTFOUND",
             "MINEMODS_SECURITYEXCEPTION",
             "MINEMODS_UNKNOWNIOEXCEPTION",
             "MINEMODS_CRITUNKNOWNEXCEPTION",
@@ -99,7 +104,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(208, 121);
+            this.textBox2.Location = new System.Drawing.Point(208, 120);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(129, 20);
             this.textBox2.TabIndex = 6;
@@ -169,6 +174,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BugReport";
             this.Text = "BugReport";
             this.ResumeLayout(false);
@@ -189,5 +195,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

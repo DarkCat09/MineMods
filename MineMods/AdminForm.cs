@@ -4,6 +4,8 @@ using System.Text;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Net;
 
 namespace MineMods
 {
@@ -43,38 +45,46 @@ namespace MineMods
             textBox1.Visible = true;
         }
 
+        public string HashByteArrayToString(byte[] input)
+        {
+            byte[] data = input;
+            StringBuilder sBuild = new StringBuilder();
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuild.Append(data[i].ToString("x2"));
+            }
+
+            return sBuild.ToString();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             string promptPasswdFromFile = "";
-            string correctPasswdFromFile = "";
-            //string correctHashFromFile = "";
+            string correctHashFromFile = "";
 
             byte[] tmpSource;  //source passwd that writed in passwdbox
             byte[] tmpHash;    //hash of passwd that writed in passwdbox
-            byte[] correctHash;//hash of correct passwd
 
             if (File.Exists(".admin_passwd.conf"))
             {
-                StreamReader s = new StreamReader(".admin_passwd.conf", ASCIIEncoding.ASCII);
-                correctPasswdFromFile = s.ReadLine();
-                //correctHashFromFile = s.ReadLine();
+                StreamReader s = new StreamReader(".admin_passwd.conf", Encoding.UTF8);
+                correctHashFromFile = s.ReadLine();
                 promptPasswdFromFile = s.ReadLine();
 
                 promptPasswd = (promptPasswdFromFile != "False");
 
                 s.Close();
-
-                correctHash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(correctPasswdFromFile));
-                //correctHash = UnicodeEncoding.Unicode.GetBytes(correctHashFromFile);
             }
             else
             {
                 DateTime today = DateTime.Today;
                 string defpasswd = "$changeme" + today.ToString("ddMMyyyy");
-                byte[] defpasswdhash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(defpasswd));
+                byte[] defpasswdhash = new MD5CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(defpasswd));
 
-                File.WriteAllText(".admin_passwd.conf", defpasswd + "\n" + promptPasswd.ToString(), ASCIIEncoding.ASCII);
-                correctHash = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(defpasswd));
+                File.WriteAllText(".admin_passwd.conf", HashByteArrayToString(defpasswdhash) + "\r\n" +
+                                  promptPasswd.ToString() + "\r\n", Encoding.UTF8);
+                correctHashFromFile = HashByteArrayToString(defpasswdhash);
                 promptPasswd = true;
             }
 
@@ -93,14 +103,14 @@ namespace MineMods
             }
             else
             {
-                tmpSource = ASCIIEncoding.ASCII.GetBytes(textBox1.Text);
+                tmpSource = Encoding.UTF8.GetBytes(textBox1.Text);
                 tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
 
-                //comparing hash
-                bool bEqual = false;
-                bEqual = (UnicodeEncoding.Unicode.GetString(tmpHash) == UnicodeEncoding.Unicode.GetString(correctHash));
+                //for debug
+                /*_ = MessageBox.Show("Введено: " + HashByteArrayToString(tmpHash) + "\n" +
+                                    "Правильный: " + correctHashFromFile);*/
 
-                if (bEqual)
+                if (HashByteArrayToString(tmpHash) == correctHashFromFile)
                 {
                     _ = MessageBox.Show("Авторизация успешна!");
                     tabControl1.Visible = true;
@@ -146,8 +156,11 @@ namespace MineMods
         {
             if (textBox4.Text != "")
             {
+                string newCorrectHash = HashByteArrayToString(
+                    new MD5CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(textBox4.Text)));
+
                 File.WriteAllText(".admin_passwd.conf",
-                                  textBox4.Text + "\n" + promptPasswd.ToString());
+                                  newCorrectHash + "\n" + promptPasswd.ToString());
             }
             else
             {
@@ -163,22 +176,22 @@ namespace MineMods
         {
             promptPasswd = true;
 
-            StreamReader s = new StreamReader(".admin_passwd.conf", ASCIIEncoding.ASCII);
-            string passwdFromFile = s.ReadLine();
+            StreamReader s = new StreamReader(".admin_passwd.conf", Encoding.UTF8);
+            string hashFromFile = s.ReadLine();
             s.Close();
 
-            File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString(), ASCIIEncoding.ASCII);
+            File.WriteAllText(".admin_passwd.conf", hashFromFile + "\n" + promptPasswd.ToString(), Encoding.UTF8);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             promptPasswd = false;
 
-            StreamReader s = new StreamReader(".admin_passwd.conf", ASCIIEncoding.ASCII);
-            string passwdFromFile = s.ReadLine();
+            StreamReader s = new StreamReader(".admin_passwd.conf", Encoding.UTF8);
+            string hashFromFile = s.ReadLine();
             s.Close();
 
-            File.WriteAllText(".admin_passwd.conf", passwdFromFile + "\n" + promptPasswd.ToString(), ASCIIEncoding.ASCII);
+            File.WriteAllText(".admin_passwd.conf", hashFromFile + "\n" + promptPasswd.ToString(), Encoding.UTF8);
         }
 
         private void EnableTimer(Timer t)
@@ -326,9 +339,19 @@ namespace MineMods
             textBox1.UseSystemPasswordChar = true;
         }
 
+        public static string login = "";
+        public static string password = "";
         private void button10_Click(object sender, EventArgs e)
         {
+            string dscrFilepath = "";
+            string pictFilepath = "";
+            string dscrFilename = "";
+            string pictFilename = "";
+
             string strToWrite = "";
+
+            FtpAuthForm ftpauth = new FtpAuthForm();
+            ftpauth.ShowDialog();
 
             #region checking options - is empty?
             if (textBox7.Text == "")
@@ -367,11 +390,15 @@ namespace MineMods
             #endregion
 
             #region saving description and picture
-            File.WriteAllLines("mods\\" + Vars.ParseModFileName(textBox7.Text) + "-dscr.txt", textBox9.Lines);
+            dscrFilename = Vars.ParseModFileName(textBox7.Text) + "-dscr.txt";
+            dscrFilepath = "mods\\" + dscrFilename;
+            File.WriteAllLines(dscrFilepath, textBox9.Lines);
             if (modImagePath != "") {
                 string[] imgpathSubstrs = modImagePath.Split('.');
-                File.Copy(modImagePath, "mods\\" + Vars.ParseModFileName(textBox7.Text) + "-icon." + 
-                    imgpathSubstrs[imgpathSubstrs.Length - 1]);
+                pictFilename = Vars.ParseModFileName(textBox7.Text) + "-icon." +
+                    imgpathSubstrs[imgpathSubstrs.Length - 1];
+                pictFilepath = "mods\\" + pictFilename;
+                File.Copy(modImagePath, pictFilepath);
             }
             #endregion
 
@@ -379,6 +406,65 @@ namespace MineMods
             {
                 File.AppendAllText("mods.txt", strToWrite + "\r\n");
             }
+
+            #region uploading files to ftp-server
+            try
+            {
+                //modsfile
+                FtpWebRequest reqModsfile = (FtpWebRequest)WebRequest.Create(
+                    "ftp://files.000webhost.com:21/public_html/mods/mods.txt");
+                reqModsfile.Method = WebRequestMethods.Ftp.UploadFile;
+                reqModsfile.Credentials = new NetworkCredential(login, password);
+
+                FileStream fsMods = new FileStream("mods.txt", FileMode.Open);
+                byte[] fileContents = new byte[fsMods.Length];
+                fsMods.Read(fileContents, 0, fileContents.Length);
+                fsMods.Close();
+                reqModsfile.ContentLength = fileContents.Length;
+
+                Stream reqModsfileStream = reqModsfile.GetRequestStream();
+                reqModsfileStream.Write(fileContents, 0, fileContents.Length);
+                reqModsfileStream.Close();
+
+                //description
+                FtpWebRequest reqDscr = (FtpWebRequest)WebRequest.Create(
+                    "ftp://files.000webhost.com:21/public_html/mods/" + dscrFilename);
+                reqDscr.Method = WebRequestMethods.Ftp.UploadFile;
+                reqDscr.Credentials = new NetworkCredential(login, password);
+
+                FileStream fsDscr = new FileStream(dscrFilepath, FileMode.Open);
+                fileContents = new byte[fsDscr.Length];
+                fsDscr.Read(fileContents, 0, fileContents.Length);
+                fsDscr.Close();
+                reqDscr.ContentLength = fileContents.Length;
+
+                Stream reqDscrFileStream = reqDscr.GetRequestStream();
+                reqDscrFileStream.Write(fileContents, 0, fileContents.Length);
+                reqDscrFileStream.Close();
+
+                //picture
+                FtpWebRequest reqPict = (FtpWebRequest)WebRequest.Create(
+                    "ftp://files.000webhost.com:21/public_html/mods/" + pictFilename);
+                reqPict.Method = WebRequestMethods.Ftp.UploadFile;
+                reqPict.Credentials = new NetworkCredential(login, password);
+
+                FileStream fsPict = new FileStream(pictFilepath, FileMode.Open);
+                fileContents = new byte[fsPict.Length];
+                fsPict.Read(fileContents, 0, fileContents.Length);
+                fsPict.Close();
+                reqPict.ContentLength = fileContents.Length;
+
+                Stream reqPictFileStream = reqPict.GetRequestStream();
+                reqPictFileStream.Write(fileContents, 0, fileContents.Length);
+                reqPictFileStream.Close();
+            }
+            catch (Exception ex)
+            {
+                _ = MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            #endregion
+
+            _ = MessageBox.Show("Готово!");
         }
 
         private void button11_Click(object sender, EventArgs e)
@@ -411,6 +497,34 @@ namespace MineMods
             openFileDialog2.ShowDialog();
             modImagePath = openFileDialog2.FileName;
             pictureBox2.Load(modImagePath);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, string> launcherDownloadUrls = new Dictionary<string, string>()
+            {
+                {"Minecraft Launcher", "https://launcher.mojang.com/download/MinecraftInstaller.msi"},
+                {"TLauncher", "https://tlauncher.org/installer"},
+                {"MLauncher", "https://mlauncher.ru/downloading"},
+                {"ATLauncher", "https://atlauncher.com/download/exe"},
+                {"FreeLauncher", "https://github.com/dedepete/FreeLauncher/releases/download/v0.2.4/FreeLauncher.exe"},
+                {"MRLauncher", "https://misterlauncher.org/download/windows"},
+                {"CyberMC", "https://cybermc.ru/resources/minecraft.1/download?version=44"},
+                {"MultiMC", "https://files.multimc.org/downloads/mmc-stable-win32.zip"},
+                {"GID-Launcher", "https://gid-minecraft.ru/download.php?c=launchers&s=9a24ee4e6a7cb2cb32ec4dcf687d8e75&f=GID-Launcher-win-setup.exe&pid=9854&eid=0&t=1589048036"}
+            };
+
+            string downloadUrl =
+                (radioButton1.Checked)  ? launcherDownloadUrls["Minecraft Launcher"] :
+                (radioButton2.Checked)  ? launcherDownloadUrls["TLauncher"] :
+                (radioButton3.Checked)  ? launcherDownloadUrls["MLauncher"] :
+                (radioButton4.Checked)  ? launcherDownloadUrls["ATLauncher"] :
+                (radioButton6.Checked)  ? launcherDownloadUrls["FreeLauncher"] :
+                (radioButton7.Checked)  ? launcherDownloadUrls["MRLauncher"] :
+                (radioButton8.Checked)  ? launcherDownloadUrls["CyberMC"] :
+                (radioButton9.Checked)  ? launcherDownloadUrls["MultiMC"] :
+                (radioButton10.Checked) ? launcherDownloadUrls["GID-Launcher"] :
+                "error";
         }
     }
 }

@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace MineMods
 {
@@ -15,6 +16,7 @@ namespace MineMods
         {
             InitializeComponent();
 
+            WebClient c = new WebClient();
             receivedMod = mod;
             string modName = mod.modName.Replace("&&", "&");
 
@@ -24,8 +26,22 @@ namespace MineMods
             #region description file
             try
             {
-                //string str = "mods\\" + modName.Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "") + "-dscr.txt";
-                string str = "mods\\" + Vars.ParseModFileName(modName) + "-dscr.txt";
+                string filename = Vars.ParseModFileName(modName) + "-dscr.txt";
+                string str = "mods\\" + filename;
+                bool isModsfileExists = true;
+
+                if (!File.Exists(str))
+                {
+                    isModsfileExists = false;
+                    FileStream f = File.Create(str);
+                    f.Close();
+                }
+
+                if (isModsfileExists || Vars.updateCache)
+                {
+                    c.DownloadFile("https://theminemods.000webhostapp.com/mods/" + filename, str);
+                }
+
                 modDescription = File.ReadAllLines(str);
             }
             catch (PathTooLongException)
@@ -42,6 +58,29 @@ namespace MineMods
                                     "Попробуйте перезапустить программу.\n" +
                                     "Если это не поможет, передайте разработчику код ошибки:\n" +
                                     "MINEMODS_FILENOTFOUNDEXCEPTION",
+                                    "Ошибка", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                _ = Directory.CreateDirectory("mods");
+                _ = MessageBox.Show("Не найден каталог с файлами описания!\n\n" +
+                                    "Проблема должна быть уже решена автоматически.\n" +
+                                    "Перезапустите программу.\n" +
+                                    "Если это не поможет, передайте разработчику код ошибки:\n" +
+                                    "MINEMODS_DIRNOTFOUNDEXCEPTION",
+                                    "Ошибка", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                Close();
+            }
+            catch (WebException)
+            {
+                _ = MessageBox.Show("Ошибка получения файла описания с удалённого сервера!\n\n" +
+                                    "Проверьте своё интернет-соединение и перезапустите программу.\n" +
+                                    "Также возможно, что файла описания для этого мода ещё нет.\n\n" +
+                                    "Если Вам нужно описание, напишите разработчику письмо\n" +
+                                    "с темой кода проблемы:\n" +
+                                    "MINEMODS_FILEONSERVERNOTFOUND <название мода>",
                                     "Ошибка", MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
             }
@@ -78,36 +117,49 @@ namespace MineMods
             if (modDescription != null)
             {
                 textBox1.Lines = modDescription;
-                //string str = "mods\\" + modName.Replace(" ", "_").Replace("&", "and").Replace("_(", "-").Replace(")", "") + "-icon";
-                string str = "mods\\" + Vars.ParseModFileName(modName) + "-icon";
+                string filename = Vars.ParseModFileName(modName) + "-icon";
+                string str = "mods\\" + filename;
 
-                try
+                int i = 0;
+                List<string> pictexts = new List<string>() {
+                    ".png", ".jpg", ".gif", ".bmp"
+                };
+                foreach (String ext in pictexts)
                 {
-                    pictureBox1.Load(str + ".png");
-                }
-                catch (FileNotFoundException)
-                {
-                    try
+                    if (File.Exists(str + ext) && !(Vars.updateCache))
                     {
-                        pictureBox1.Load(str + ".jpg");
+                        pictureBox1.Load(str + ext);
+                        break;
                     }
-                    catch (FileNotFoundException)
+                    else
                     {
                         try
                         {
-                            pictureBox1.Load(str + ".gif");
+                            FileStream f = File.Create(str + ext);
+                            f.Close();
+
+                            c.DownloadFile("https://theminemods.000webhostapp.com/mods/" + filename + ext, str + ext);
+                            pictureBox1.Load(str + ext);
+
+                            break;
                         }
-                        catch (FileNotFoundException)
+                        catch (WebException)
                         {
-                            _ = MessageBox.Show("Файл с картинкой не найден!\n\n" +
-                                                "Возможно, картинки для этого мода пока что нет.\n\n" +
-                                                "Если Вам нужна картинка, напишите разработчику письмо\n" +
-                                                "с темой кода проблемы:\n" +
-                                                "MINEMODS_PICTURENOTFOUND <название мода>",
-                                                "Ошибка", MessageBoxButtons.OK,
-                                                MessageBoxIcon.Warning);
+                            if (i == (pictexts.Count - 1))
+                            {
+                                _ = MessageBox.Show("Ошибка получения картинки с удалённого сервера!\n\n" +
+                                                    "Проверьте своё интернет-соединение.\n" +
+                                                    "Также возможно, картинки для этого мода пока что нет.\n\n" +
+                                                    "Если Вам нужна картинка, напишите разработчику письмо\n" +
+                                                    "с темой кода проблемы:\n" +
+                                                    "MINEMODS_PICTURENOTFOUND <название мода>",
+                                                    "Ошибка", MessageBoxButtons.OK,
+                                                    MessageBoxIcon.Warning);
+                            }
                         }
                     }
+
+                    i++;
                 }
             }
             #endregion

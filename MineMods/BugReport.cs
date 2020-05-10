@@ -19,10 +19,20 @@ namespace MineMods
             if (comboBox1.Text == "Другое")
             {
                 textBox2.Visible = true;
+                toolTip1.SetToolTip(textBox2, "");
+                toolTip1.Active = false;
+            }
+            else if (comboBox1.Text == "Удалите этот мод")
+            {
+                textBox2.Visible = true;
+                toolTip1.Active = true;
+                toolTip1.SetToolTip(textBox2, "Укажите причину");
             }
             else
             {
                 textBox2.Visible = false;
+                toolTip1.SetToolTip(textBox2, "");
+                toolTip1.Active = false;
             }
         }
 
@@ -30,9 +40,20 @@ namespace MineMods
         {
             if (textBox3.Text != "Admin/DarkCat09/CodePicker13")
             {
+                string msgBody = (
+                    comboBox1.Text == "Добавьте этот мод" ||
+                    comboBox1.Text == "Удалите этот мод") ?
+                    "&body=Здравствуйте!\nПрошу: " + comboBox1.Text + " - " +
+                    textBox2.Text + " " + textBox1.Text :
+                    (comboBox1.Text == "Другое") ?
+                    "&body=Здравствуйте!\nПрошу " + comboBox1.Text + ": " +
+                    textBox2.Text + "\nМодификация: " + textBox1.Text :
+                    "&body=Здравствуйте!\nПрошу исправить ошибку " + comboBox1.Text + " " +
+                    textBox2.Text + " в модификации " + textBox1.Text;
+
                 Process.Start("mailto:a.chechkenev@yandex.ru?subject=" +
-                              textBox1.Text + " " + comboBox1.Text + " " + textBox2.Text +
-                              "&body=Здравствуйте!\nПрошу исправить ошибку " + comboBox1.Text + " " + textBox2.Text + " в модификации " + textBox1.Text);
+                              comboBox1.Text + " " + textBox1.Text + " " + textBox2.Text +
+                              msgBody);
             }
             else
             {

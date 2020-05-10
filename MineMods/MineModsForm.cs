@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MineMods
@@ -198,6 +199,30 @@ namespace MineMods
             button6.Text = Languages.Eng["Электроника и оружие"];
             button7.Text = Languages.Eng["Графика"];
             button8.Text = Languages.Eng["Блоки и другое"];
+        }
+
+        private void MineModsForm_Load(object sender, EventArgs e)
+        {
+            string boxres = MessageBox.Show("Обновить кэш?", "Вопрос",
+                                            MessageBoxButtons.YesNo, MessageBoxIcon.Information).ToString();
+            Vars.updateCache = (boxres == "Yes");
+
+            if (Vars.updateCache)
+            {
+                if (!File.Exists("mods.txt"))
+                {
+                    FileStream f = File.Create("mods.txt");
+                    f.Close();
+                }
+
+                System.Net.WebClient c = new System.Net.WebClient();
+                c.DownloadFile("https://theminemods.000webhostapp.com/mods/mods.txt", "mods.txt");
+            }
+        }
+
+        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MineModsForm_Load(null, null);
         }
     }
 }

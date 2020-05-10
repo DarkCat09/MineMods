@@ -29,3 +29,4 @@ C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.AdminForm.resour
 C:\Users\user\source\repos\MineMods\MineMods\obj\Debug\MineMods.FavouriteMods.resources
 C:\Users\Acer\VisualStudio\source\repos\MineMods\MineMods\obj\Debug\MineMods.FavouriteMods.resources
 C:\Users\Acer\VisualStudio\source\repos\MineMods\MineMods\obj\Debug\MineMods.csproj.CoreCompileInputs.cache
+C:\Users\Acer\VisualStudio\source\repos\MineMods\MineMods\obj\Debug\MineMods.FtpAuthForm.resources

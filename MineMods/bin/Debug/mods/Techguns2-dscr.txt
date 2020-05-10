@@ -1,2 +1,42 @@
-Это новая версия Techguns в отдельной модификации.
-Для Minecraft Forge 1.9+.
+Techguns2 is the Minecraft 1.12 version of Techguns.
+A lot of features from the 1.7.10 version have been ported over. Some new stuff got added.
+Techguns does not require other mods besides forge to start anymore,
+but please read the section about Mod interactions below.
+From version 2.0.1.2 forward Techguns has an ingame manual if Patchouli is installed!
+
+Changes to 1.7
+Mod Interactions
+
+Essential
+Minecraft Forge
+Techguns 2.0.1.2 requires build 2807+
+
+Incompatibilities
+Eleccore has conflicting ASM and will stop 3d items from Techguns to render correctly in JEI.
+Fix: remove Eleccore.
+
+Strongly Recommended
+Not required to launch, but missing out features without
+Chisel & CTM
+Required to have chisel blocks in worldgen structures and CTM is required so techguns blocks can have connected textures.
+Something that Generates Forge Energy
+Forge Energy is pretty much RF merged into forge, most things generating RF will be compatible with FE.
+Power requirement can be disabled in config though if you absolutely don't want it.
+A mod that adds fluid pipes
+without you won't be able to craft all stuff survival mode.
+Just Enough Items (JEI)
+Needed to view all recipes including machines ingame
+Patchouli
+If Patchouli is installed, techguns has an ingame manual as of version 2.0.1.2. The Manual is still WIP but should cover the basics.
+
+Optional Interactions
+FTB-Utilities (FTBU)
+Used by turrets and machines to determine friends with FTBU's team system.
+!FTBU requires FTBLib! Recommended when playing on a server with multiple people, not needed in singleplayer.
+Albedo
+Albedo is a lighting library that allows to use dynamic point lights in Minecraft.
+Techguns 2 supports this. Most guns and explosions create lights.
+!Might also cause slight rendering bugs sometimes! Clientside choice.
+CraftTweaker
+Allows customization of recipes and more. Techguns 2 supports adding/removing machine recipes.
+Weapon and armor stats can also be customized trough crafttweaker.
