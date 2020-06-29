@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8" />
+		<title>MineMods - Главная</title>
+		<style>
+			.warning_projclose {
+				background-color: rgb(242, 170, 170);
+				color: red;
+				font-weight: bold;
+				border: 2px solid red;
+				border-radius: 7px;
+				width: 500px;
+			}
+			.warning_projclose span {
+				padding: 10px;
+			}
+			.warning_projclose #close {
+				padding: 0px;
+				float: right;
+				cursor: pointer;
+				margin-right: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class = "warning_projclose">
+			<span id = "close" onclick = "closeNotify()">X</span>
+			<br />
+			<span>Проект будет закрыт <em style = "font-style: italic;">10.06.2020</em></span>
+		</div>
+		<h1>MineMods</h1>
+		<h2>Моды для Minecraft Forge.</h2>
+		<script>
+			function closeNotify() {
+				var el = document.getElementsByClassName("warning_projclose")[0];
+				document.querySelector("body").removeChild(el);
+			}
+		</script>
+	</body>
+</html>

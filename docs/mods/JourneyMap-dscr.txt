@@ -1,0 +1,5 @@
+Help and documentation: http://journeymap.info
+Real-time mapping in game or in a web browser as you explore.
+
+JourneyMap is a client+server mod for Forge which maps your Minecraft world in real-time as you explore.
+You can view the map in a web browser or in-game as a Minimap or full-screen.
